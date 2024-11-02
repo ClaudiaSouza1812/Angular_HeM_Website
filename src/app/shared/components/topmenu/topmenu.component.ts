@@ -8,14 +8,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-topmenu',
   standalone: true,
-  imports: [
-    MatToolbarModule, 
-    MatIconModule, 
-    MatMenuModule, 
-    MatButtonModule,
-    RouterModule,
-    MatMenuTrigger
-  ],
+  imports: [MatToolbarModule, MatIconModule, MatMenuModule, MatButtonModule, RouterModule, MatMenuTrigger],
   templateUrl: './topmenu.component.html',
   styleUrls: ['./topmenu.component.scss']
 })

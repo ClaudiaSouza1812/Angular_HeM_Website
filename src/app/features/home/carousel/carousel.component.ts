@@ -4,8 +4,8 @@ import { interval, Subscription } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { ICarouselItem } from '../../../../models/ICarousel-item';
-import { CarouselService } from '../../../../core/services/carousel.service';
+import { ICarouselItem } from '../../../models/ICarousel-item';
+import { CarouselService } from '../../../core/services/carousel.service';
 
 @Component({
   selector: 'app-carousel',
