@@ -1,7 +1,9 @@
-import { Component, Input, OnInit, OnDestroy, Inject, PLATFORM_ID, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { interval, Subscription } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { CarouselItem } from '../../../interfaces/carousel-item';
 import { CarouselService } from '../../../data/carousel.service';
 
@@ -10,77 +12,51 @@ import { CarouselService } from '../../../data/carousel.service';
   standalone: true,
   imports: [CommonModule, MatIconModule, MatButtonModule],
   templateUrl: './carousel.component.html',
-  styleUrl: './carousel.component.css'
+  styleUrl: './carousel.component.css',
+  providers: [CarouselService]
 })
 export class CarouselComponent implements OnInit, OnDestroy {
-  
-  carouselItems: CarouselItem[] = [];
-  @Input() autoPlay: boolean = false;
-  @Input() interval: number = 5000;
-
-  currentIndex: number = 0;
-  private autoPlayInterval: any;
-  private isBrowser: boolean;
+  images: CarouselItem[] = [];
+  currentIndex = 0;
+  private autoSlideSubscription?: Subscription;
 
   constructor(
     private carouselService: CarouselService,
-    private ngZone: NgZone,
-    @Inject(PLATFORM_ID) platformId: Object
-  ) {
-    this.isBrowser = isPlatformBrowser(platformId);
-  }
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit() {
-    // Get items synchronously to avoid hydration issues
-    this.carouselItems = this.carouselService.getCarouselItems();
-    
-    if (this.isBrowser) {
-      // Delay autoPlay start to help with hydration
-      setTimeout(() => {
-        if (this.autoPlay) {
-          this.startAutoPlay();
-        }
-      }, 0);
+    try {
+      this.images = this.carouselService.getCarouselItems();
+      if (isPlatformBrowser(this.platformId)) {
+        this.startAutoSlide();
+      }
+    } catch (error) {
+      console.error('Error initializing carousel:', error);
+      // Handle the error appropriately
+      this.images = []; // Set a default value
     }
   }
 
   ngOnDestroy() {
-    this.stopAutoPlay();
-  }
-
-  next() {
-    if (this.carouselItems.length > 1) {
-      this.currentIndex = (this.currentIndex + 1) % this.carouselItems.length;
+    if (this.autoSlideSubscription) {
+      this.autoSlideSubscription.unsubscribe();
     }
   }
 
-  previous() {
-    if (this.carouselItems.length > 1) {
-      this.currentIndex = (this.currentIndex - 1 + this.carouselItems.length) % this.carouselItems.length;
-    }
-  }
-
-  handleImageError(event: any) {
-    console.error('Image failed to load:', event.target.src);
-  }
-
-  private startAutoPlay() {
-    if (this.isBrowser) {
-      // Run autoPlay outside Angular's zone to prevent hydration issues
-      this.ngZone.runOutsideAngular(() => {
-        this.autoPlayInterval = setInterval(() => {
-          this.ngZone.run(() => {
-            this.next();
-          });
-        }, this.interval);
+  private startAutoSlide() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.autoSlideSubscription = interval(3000).subscribe(() => {
+        this.nextSlide();
       });
     }
   }
 
-  private stopAutoPlay() {
-    if (this.isBrowser && this.autoPlayInterval) {
-      clearInterval(this.autoPlayInterval);
-      this.autoPlayInterval = null;
-    }
+  nextSlide() {
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+  }
+
+  setCurrentSlide(index: number) {
+    this.currentIndex = index;
   }
 }
