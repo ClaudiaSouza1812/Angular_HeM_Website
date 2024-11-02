@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CarouselItem } from '../interfaces/carousel-item';
+import { ICarouselItem } from '../../models/ICarousel-item';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarouselService {
-  private carouselItems: CarouselItem[] = [
+  private carouselItems: ICarouselItem[] = [
     {
       title: 'Slide 1',
       image: '/slider1.jpg'
@@ -21,7 +21,7 @@ export class CarouselService {
   ]
   constructor() { }
 
-  getCarouselItems(): CarouselItem[] {
+  getCarouselItems(): ICarouselItem[] {
     return this.carouselItems;
   }
 }
