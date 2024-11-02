@@ -1,0 +1,156 @@
+"produtos": [
+{
+	"id": 1,
+	"nome": "Graphic print t-shirt",
+	"marca": "Song For The Mute",
+	"tipo_de_produto": "T-Shirt",
+	"cor": "Preto",
+	"preco": 123,
+	"descricao": "We heard somewhere that we should enjoy the simple things in life. That's why we immediately knew this Song For The Mute white T-shirt would bring more fun to our days. Even if it means going back to the office.",
+	"foto_principal": "graphic_print_tshirt_1.jpg",
+	"foto_secundaria": "graphic_print_tshirt_2.jpg"
+},
+{
+	"id": 2,
+	"nome": "Comme Des Garçons",
+	"marca": "Song For The Mute",
+	"tipo_de_produto": "Camisa",
+	"cor": "Multicor",
+	"preco": 442,
+	"descricao": "Multi-colored cotton logo patch crewneck T-shirt from SONG FOR THE MUTE featuring logo patch to the front, short sleeves and straight hem.",
+	"foto_principal": "contrast_panel_short_sleeve_shirt_1.jpg",
+	"foto_secundaria": "contrast_panel_short_sleeve_shirt_2.jpg"
+},
+{
+	"id": 3,
+	"nome": "Moulin suit jacket",
+	"marca": "Jacquemus",
+	"tipo_de_produto": "Casaco",
+	"cor": "Cinzento",
+	"preco": 1800,
+	"descricao": "For the modern gentleman. Crafted from a linen blend, this Moulin suit jacket from Jacquemus showcases the designer's ability to deliver sartorial designs with a contemporary twist. Suit up.",
+	"foto_principal": "moulin_suit_jacket_1.jpg",
+	"foto_secundaria": "moulin_suit_jacket_2.jpg"
+},
+{
+	"id": 4,
+	"nome": "Intarsia paisley logo windbreaker",
+	"marca": "Etro",
+	"tipo_de_produto": "Casaco",
+	"cor": "Preto",
+	"preco": 315,
+	"descricao": "Black, paisley print, logo print at the chest, logo print to the rear, striped lining, classic hood, two-way zip fastening, long sleeves, toggle fastening, buttoned cuffs.",
+	"foto_principal": "intarsia_paisley_logo_windbreaker_1.jpg",
+	"foto_secundaria": "intarsia_paisley_logo_windbreaker_2.jpg"
+},
+{
+	"id": 5,
+	"nome": "Logo-print hoodie",
+	"marca": "Vetements",
+	"tipo_de_produto": "Sweatshirt",
+	"cor": "Cinzento",
+	"preco": 623,
+	"descricao": "Light grey, cotton blend, drawstring hood, logo print at the chest, long sleeves, front pouch pocket, straight hem",
+	"foto_principal": "logo_print_hoodie_1.jpg",
+	"foto_secundaria": "logo_print_hoodie_2.jpg"
+},
+{
+	"id": 6,
+	"nome": "Cropped straight leg chinos",
+	"marca": "Department 5",
+	"tipo_de_produto": "Calças",
+	"cor": "Azul",
+	"preco": 144,
+	"descricao": "Blue cotton cropped straight leg chinos from Department 5 featuring a waistband with belt loops, a front fastening, side pockets, back pockets and turn up hems.",
+	"foto_principal": "cropped_straight_leg_chinos_1.jpg",
+	"foto_secundaria": "cropped_straight_leg_chinos_2.jpg"
+},
+{
+	"id": 7,
+	"nome": "Slim fit chinos",
+	"marca": "Pt01",
+	"tipo_de_produto": "Calças",
+	"cor": "Azul",
+	"preco": 131,
+	"descricao": "Blue cotton and linen blend slim fit chinos from Pt01 featuring a pleated waist, a button and zip fly, a waistband with belt loops, side pockets and a regular length.",
+	"foto_principal": "slim_fit_chinos_1.jpg",
+	"foto_secundaria": "slim_fit_chinos_2.jpg"
+},
+{
+	"id": 8,
+	"nome": "Lhotse padded jacket",
+	"marca": "The North Face",
+	"tipo_de_produto": "Casaco",
+	"cor": "Azul",
+	"preco": 315,
+	"descricao": "Blue/black, colour-block panelled design, embroidered logo to the rear, logo patch at the sleeve, high neck, front zip fastening, long sleeves, two side slit pockets",
+	"foto_principal": "lhotse_padded_jacket_1.jpg",
+	"foto_secundaria": "lhotse_padded_jacket_2.jpg"
+},
+{
+	"id": 9,
+	"nome": "Oversized hooded jacket",
+	"marca": "Napa By Martine Rose",
+	"tipo_de_produto": "Casaco",
+	"cor": "Azul",
+	"preco": 575,
+	"descricao": "Imperial-blue, cotton and polyamide-blend, classic hood, long sleeves, oversize frame, front zip fastening",
+	"foto_principal": "oversized_hooded_jacket_1.jpg",
+	"foto_secundaria": "oversized_hooded_jacket_2.jpg"
+},
+{
+	"id": 10,
+	"nome": "Two tone padded coat",
+	"marca": "Vetements",
+	"tipo_de_produto": "Casaco",
+	"cor": "Azul",
+	"preco": 1681,
+	"descricao": "Two colours are better than one and this padded coat from Vetements has both black and blue adorning an outwear choice that keeps you warm on the chilliest of days. It's plain as black and white to see you'll love this look.",
+	"foto_principal": "two_tone_padded_coat_1.jpg",
+	"foto_secundaria": "two_tone_padded_coat_2.jpg"
+},
+{
+	"id": 11,
+	"nome": "Oversized padded coat",
+	"marca": "Canada Goose",
+	"tipo_de_produto": "Casaco",
+	"cor": "Laranja",
+	"preco": 825,
+	"descricao": "Monarch orange feather down oversized padded coat from Canada Goose featuring a hood, long sleeves, a snap button over zip concealed front fastening, a logo patch at the sleeve and a metallic logo print at the sleeve.",
+	"foto_principal": "oversized_padded_coat_1.jpg",
+	"foto_secundaria": "oversized_padded_coat_2.jpg"
+},
+{
+	"id": 12,
+	"nome": "Long straight-cut jeans",
+	"marca": "Helmut Lang",
+	"tipo_de_produto": "Calças",
+	"cor": "Laranja",
+	"preco": 162,
+	"descricao": "Founded in 1986, Helmut Lang has been accredited with redefining modern luxury, offering styles that endorse the progressive spirit of the house’s founder. This raw indigo cotton long straight-cut jeans from Helmut Lang features a waistband with belt loops, a button and zip fly, two front pockets, a rolled hem and contrasting panels.",
+	"foto_principal": "long_straight_cut_jeans_1.jpg",
+	"foto_secundaria": "long_straight_cut_jeans_2.jpg"
+},
+{
+	"id": 13,
+	"nome": "Slim-cut trousers",
+	"marca": "FRAME",
+	"tipo_de_produto": "Calças",
+	"cor": "Azul",
+	"preco": 220,
+	"descricao": "Azure-blue, cotton-blend, slim cut, front button fastening, two diagonal pockets to the sides, two rear patch pockets",
+	"foto_principal": "slim_cut_trousers_1.jpg",
+	"foto_secundaria": "slim_cut_trousers_2.jpg"
+},
+{
+	"id": 14,
+	"nome": "Slim fit moleskin trousers",
+	"marca": "Incotex",
+	"tipo_de_produto": "Calças",
+	"cor": "Verde",
+	"preco": 155,
+	"descricao": "Khaki green, stretch cotton, belt loops, concealed front fastening, two side inset pockets, two rear flap pockets, logo patch to the rear, slim fit",
+	"foto_principal": "slim_fit_moleskin_trousers_1.jpg",
+	"foto_secundaria": "slim_fit_moleskin_trousers_2.jpg"
+}
+]

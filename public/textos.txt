@@ -1,0 +1,40 @@
+SUB-MENUS
+------------------------------------------------
+
+Sub-menu de Homem:
+•	Casacos
+•	Camisas
+•	Calças
+•	Sweatshirts
+•	Polos
+•	Sapatos
+•	Todos
+
+Sub-menu de Mulher:
+•	Vestidos
+•	Blusões
+•	Coletes
+•	Jeans
+•	Saias
+•	Calções
+•	Lingerie
+•	Sapatos
+•	Malas
+•	Todos
+
+Sub-menu de Criança:
+•	Menina | 6-14 Anos
+•	Menino | 6-14 Anos
+•	Bebé Menina | 3 Meses - 5 Anos
+•	Bebé Menino | 3 Meses - 5 Anos
+•	Mini | 0-12 Meses
+
+Sub-menu de Acessórios:
+•	Malas
+•	Pulseiras
+•	Anéis
+
+FOOTER
+------------------------------------------------
+
+O conteúdo deste site está protegido por copyright e é propriedade da H & M Hennes & Mauritz AB. O conceito de negócio da H&M é a oferta de moda e qualidade aos melhores preços, de forma sustentável. Desde que foi fundada, em 1947, a H&M tornou-se uma das maiores empresas de moda do mundo.
