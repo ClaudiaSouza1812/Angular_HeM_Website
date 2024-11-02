@@ -2,26 +2,3 @@
     display: grid;
     gap: 30px;
 }
-footer {
-    background-color: #e4e4e4;
-    text-align: center;
-    padding: 30px;
-    max-height: fit-content;
-}
-footer p {
-    margin: 0;
-}
-div {
-    padding-bottom: 10px;
-}
-div a {
-    margin: 0;
-    padding-right: 30px;
-}
-i {
-    color: black;
-    font-size: 150%;
-}
-i:hover {
-    color: blue;
-}
