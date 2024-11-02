@@ -15,6 +15,7 @@ import { CarouselService } from '../../../data/carousel.service';
   styleUrl: './carousel.component.css',
   providers: [CarouselService]
 })
+
 export class CarouselComponent implements OnInit, OnDestroy {
   images: CarouselItem[] = [];
   currentIndex = 0;
