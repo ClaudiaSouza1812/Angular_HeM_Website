@@ -1,4 +1,4 @@
-:host {
+:host .page-wrapper {
     display: grid;
     gap: 30px;
 }
