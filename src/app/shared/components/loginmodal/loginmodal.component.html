@@ -1,17 +1,22 @@
-<section class="modalLogIn">
-    <form [formGroup]="modalForm" class="logInForm" action="">
-        <span id="closeButton">X</span>
-        <h4 id="loginHeader">Controlo de acessos</h4>
-        <p id="email">
-            <label for="emailInput">E-mail:</label>
-            <input type="email" id="emailInput" name="emailInput" formControlName="emailInput">
-        </p>
-        <p id="password">
-            <label for="passwordInput">Senha:</label>
-            <input type="password" id="passwordInput" name="passwordInput" formControlName="passwordInput">
-        </p>
-        <p class="validation">
-            <input type="button" id="validationButton" value="Validar">
-        </p>
-    </form>
-</section>
+<div *ngIf="loginModalService.isVisible$ | async as isVisible">
+    <p style="display: none">Modal visibility: {{isVisible}}</p>
+    <div class="modal" [style.display]="isVisible ? 'block' : 'none'">
+        <div class="modal-content">
+            <form [formGroup]="modalForm">
+                <span id="closeButton" (click)="closeModal()">X</span>
+                <h4 id="loginHeader">Controlo de acessos</h4>
+                <p id="email">
+                    <label for="emailInput">E-mail:</label>
+                    <input type="email" formControlName="emailInput" placeholder="Email">
+                </p>
+                <p id="password">
+                    <label for="passwordInput">Senha:</label>
+                    <input type="password" formControlName="passwordInput" placeholder="Password">
+                </p>
+                <p class="validation">
+                    <input type="button" id="validationButton" value="Validar">
+                </p>
+            </form>
+        </div>
+    </div>
+</div>

@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { LoginmodalService } from '../../../core/services/loginmodal.service';
 
 @Component({
   selector: 'app-topmenu',
@@ -15,6 +16,8 @@ import { RouterModule } from '@angular/router';
 export class TopmenuComponent {
 
   @ViewChild('menuTrigger') menuTrigger!: MatMenuTrigger;
+
+  constructor(private loginModalService: LoginmodalService) {}
   
   openMenu() {
     this.menuTrigger.openMenu();
@@ -26,5 +29,10 @@ export class TopmenuComponent {
 
   mouseLeave() {
     this.menuTrigger.closeMenu();
+  }
+
+  openLoginModal() {
+    console.log('Button clicked');
+    this.loginModalService.showModal();
   }
 }

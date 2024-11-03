@@ -6,11 +6,12 @@ import { CarouselComponent } from './features/home/carousel/carousel.component';
 import { HighlightComponent } from './features/home/highlight/highlight.component';
 import { FooterComponent } from "./shared/components/footer/footer.component";
 import { HomeComponent } from "./features/home/home.component";
+import { LoginmodalComponent } from "./shared/components/loginmodal/loginmodal.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TopmenuComponent, TopmenuComponent, CarouselComponent, HighlightComponent, FooterComponent, HomeComponent],
+  imports: [CommonModule, RouterOutlet, TopmenuComponent, TopmenuComponent, CarouselComponent, HighlightComponent, FooterComponent, HomeComponent, LoginmodalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
