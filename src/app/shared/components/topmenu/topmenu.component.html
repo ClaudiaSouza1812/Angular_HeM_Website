@@ -31,7 +31,7 @@
       </nav>
 
       <div class="user-actions">
-        <ng-container *ngIf="!(isLoggedIn$ | async)">
+        <ng-container *ngIf="!(loggedUser$ | async)">
           <button mat-icon-button aria-label="User Registration">
             <mat-icon>person_add</mat-icon>
           </button>
@@ -39,14 +39,15 @@
             <mat-icon>login</mat-icon>
           </button>
         </ng-container>
-        <ng-container *ngIf="isLoggedIn$ | async">
+        <ng-container *ngIf="loggedUser$ | async">
+          <p id="welcomeMessage">Bem vindo(a), {{ (loggedUser$ | async)?.nome }}</p>
           <button mat-icon-button aria-label="list_alt">
             <mat-icon>list_alt</mat-icon>
           </button>
           <button mat-icon-button aria-label="User">
             <mat-icon>person</mat-icon>
           </button>
-          <button mat-icon-button aria-label="Logout" (click)="logout()">
+          <button mat-icon-button aria-label="Logout" (click)="openLogoutModal()">
             <mat-icon>logout</mat-icon>
           </button>
         </ng-container>

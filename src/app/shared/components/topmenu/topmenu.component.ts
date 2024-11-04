@@ -6,9 +6,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { LoginmodalService } from '../../../core/services/loginmodal.service';
 import { AutenticationService } from '../../../core/services/autentication.service';
-import { IUser } from '../../../models/iuser';
+import { IUser } from '../../../models/IUser';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { LogoutmodalService } from '../../../core/services/logoutmodal.service';
 
 @Component({
   selector: 'app-topmenu',
@@ -20,10 +21,10 @@ import { CommonModule } from '@angular/common';
 export class TopmenuComponent {
 
   @ViewChild('menuTrigger') menuTrigger!: MatMenuTrigger;
-  isLoggedIn$!: Observable<IUser | null>;
-  
-  constructor(private loginModalService: LoginmodalService, private autenticationService: AutenticationService) {
-    this.isLoggedIn$ = this.autenticationService.currentUser$;
+  loggedUser$!: Observable<IUser | null>;
+
+  constructor(private loginModalService: LoginmodalService, private autenticationService: AutenticationService, private logoutModalService: LogoutmodalService) {
+    this.loggedUser$ = this.autenticationService.currentUser$;
   }
 
   openMenu() {
@@ -39,11 +40,16 @@ export class TopmenuComponent {
   }
 
   openLoginModal() {
-    console.log('Button clicked');
+    console.log('openLoginModal Button clicked');
     this.loginModalService.showModal();
   }
 
   logout() {
     this.autenticationService.logout();
+  }
+
+  openLogoutModal() {
+    console.log('openLogoutModal Button clicked');
+    this.logoutModalService.showModal();
   }
 }

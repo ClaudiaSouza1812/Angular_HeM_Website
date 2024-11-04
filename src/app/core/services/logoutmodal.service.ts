@@ -4,20 +4,12 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginmodalService {
+export class LogoutmodalService {
 
-  //#region Properties
-
-  // emit the modal visibility, "source of truth" for the modal's state
-  // Private BehaviorSubject - can both emit and receive values
   private modalIsVisible = new BehaviorSubject<boolean>(false);
-
-  // the observable that will update all subscribers about this modal visibility
-  // Public Observable - can only receive values, so only the service can modify values using .next()
+  
   public isVisible$ = this.modalIsVisible.asObservable();
 
-  //#endregion
-  
   constructor() { }
 
   showModal() {
@@ -31,4 +23,5 @@ export class LoginmodalService {
     this.modalIsVisible.next(false);
     console.log('Current visibility value:', this.modalIsVisible.value);
   }
+
 }

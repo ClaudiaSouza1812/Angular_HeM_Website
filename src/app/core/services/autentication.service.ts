@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { error } from 'console';
 import { Http2ServerResponse } from 'http2';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
-import { IUser } from '../../models/iuser';
 import { threadId } from 'worker_threads';
+import { IUser } from '../../models/IUser';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +57,7 @@ export class AutenticationService {
   setCurrentUser(user: IUser | null) {
     this.currentUser.next(user);
   }
-  
+
   isLoggedIn(): boolean {
     return this.currentUser.value !== null;
   }
@@ -65,5 +65,4 @@ export class AutenticationService {
   logout() {
     this.currentUser.next(null);
   }
-
 }

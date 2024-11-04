@@ -7,11 +7,12 @@ import { HighlightComponent } from './features/home/highlight/highlight.componen
 import { FooterComponent } from "./shared/components/footer/footer.component";
 import { HomeComponent } from "./features/home/home.component";
 import { LoginmodalComponent } from "./shared/components/loginmodal/loginmodal.component";
+import { LogoutmodalComponent } from "./shared/components/logoutmodal/logoutmodal.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TopmenuComponent, TopmenuComponent, CarouselComponent, HighlightComponent, FooterComponent, HomeComponent, LoginmodalComponent],
+  imports: [CommonModule, RouterOutlet, TopmenuComponent, TopmenuComponent, CarouselComponent, HighlightComponent, FooterComponent, HomeComponent, LoginmodalComponent, LogoutmodalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
