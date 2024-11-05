@@ -1,0 +1,9 @@
+<section class="products-container">
+    <h3>Homem</h3>
+    <div class="products-grid">
+        <div class="product-card" *ngFor="let product of products">
+            <a href=""><img [src]="product.foto_principal" alt="product.nome"></a>
+        </div>
+    </div>
+    <button>Ver mais</button>
+</section>

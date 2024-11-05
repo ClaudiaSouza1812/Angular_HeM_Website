@@ -34,4 +34,18 @@ export class ProductService {
       catchError(this.errorHandler)
     );
   }
+
+  getAllProducts(): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(this.urlAPI).pipe(
+      map(products => {
+        console.log('Raw API Response:', products); // Debug log
+        if (Array.isArray(products)) {
+          return products;
+        } else {
+          throw new Error('Invalid API response format');
+        }
+      }),
+      catchError(this.errorHandler)
+    );
+  }
 }

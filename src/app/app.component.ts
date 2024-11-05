@@ -12,7 +12,7 @@ import { LogoutmodalComponent } from "./shared/components/logoutmodal/logoutmoda
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TopmenuComponent, TopmenuComponent, CarouselComponent, HighlightComponent, FooterComponent, HomeComponent, LoginmodalComponent, LogoutmodalComponent],
+  imports: [CommonModule, RouterOutlet, TopmenuComponent, CarouselComponent, HighlightComponent, FooterComponent, HomeComponent, LoginmodalComponent, LogoutmodalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

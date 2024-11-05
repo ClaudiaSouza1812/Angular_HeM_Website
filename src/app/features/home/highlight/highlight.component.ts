@@ -23,8 +23,8 @@ export class HighlightComponent implements OnInit{
         this.highlightedProducts = products;
       },
       error: (error) => {
-        console.error('Erro ao carregar produtos: ', error)
+        console.error('Erro ao carregar produtos: ', error);
       }
-    })
+    });
   }
 }

@@ -1,22 +1,28 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { error } from 'console';
-import { Http2ServerResponse } from 'http2';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
-import { threadId } from 'worker_threads';
 import { IUser } from '../../models/IUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticationService {
-
   private urlAPI = "http://localhost:3001/utilizadores";
-
   private currentUser = new BehaviorSubject<IUser | null>(null);
   public currentUser$ = this.currentUser.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { 
+    if (isPlatformBrowser(this.platformId)) {
+      const storedUser = sessionStorage.getItem('currentUser');
+      if (storedUser) {
+        this.currentUser.next(JSON.parse(storedUser));
+      }
+    }
+  }
 
   errorHandler(error: HttpErrorResponse) {
     if (error.status === 404) {
@@ -46,8 +52,9 @@ export class AutenticationService {
         const user = users.find(u => 
           u.email === email && u.senha === password
         );
-        if (user) {
-          this.setCurrentUser(user); // Automatically set user when found
+        if (user && isPlatformBrowser(this.platformId)) {
+          sessionStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUser.next(user);
         }
         return user || null;
       })
@@ -55,6 +62,9 @@ export class AutenticationService {
   }
 
   setCurrentUser(user: IUser | null) {
+    if (isPlatformBrowser(this.platformId) && user) {
+      sessionStorage.setItem('currentUser', JSON.stringify(user));
+    }
     this.currentUser.next(user);
   }
 
@@ -63,6 +73,9 @@ export class AutenticationService {
   }
 
   logout() {
+    if (isPlatformBrowser(this.platformId)) {
+      sessionStorage.removeItem('currentUser');
+    }
     this.currentUser.next(null);
   }
 }

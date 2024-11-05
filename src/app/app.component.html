@@ -1,15 +1,11 @@
-<div class="app-container">
+<header>
+  <app-topmenu></app-topmenu>
   <app-loginmodal></app-loginmodal>
   <app-logoutmodal></app-logoutmodal>
-  <div class="page-wrapper">
-    <header>
-      <app-topmenu></app-topmenu>
-    </header>
-    <main>
-      <app-home></app-home>
-    </main>
-    <footer>
-      <app-footer></app-footer>
-    </footer>
-  </div>
-</div>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<footer>
+  <app-footer></app-footer>
+</footer>

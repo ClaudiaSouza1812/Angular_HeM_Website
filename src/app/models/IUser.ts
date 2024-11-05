@@ -3,4 +3,7 @@ export interface IUser {
     nome: string;
     email: string;
     senha: string;
+    morada: string;
+    codigoPostal: string;
+    pais: string;
 }
