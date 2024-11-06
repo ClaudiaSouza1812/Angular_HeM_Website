@@ -4,12 +4,12 @@
     <div class="products-grid">
         <div class="product-card" *ngFor="let product of products.slice(0, productsToShow)">
             <a href=""><img [src]="imageId === product.id ? product.foto_secundaria : product.foto_principal " alt="product.nome" (mouseenter)="imageId=product.id" (mouseleave)="imageId=null"></a>
-            <mat-icon>stars</mat-icon>
+            <mat-icon *ngIf="currentUser$ | async" (click)="handleWishList()">stars</mat-icon>
             <h4>{{product.nome}}</h4>
             <p>{{product.marca}}</p>
             <p>{{product.tipo_de_produto}}</p>
             <h5>{{product.preco}}€</h5>
         </div>
     </div>
-    <button *ngIf="hasProduct()" (click)="showProducts()">Ver mais</button>
+    <button id="see-more" *ngIf="hasProduct()" (click)="showProducts()">Ver mais</button>
 </section>

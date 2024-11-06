@@ -19,7 +19,7 @@ p {
 #price {
     font-weight: 3em;
 }
-button {
+#see-more {
     background-color: black;
     color: white;
     border: none;
@@ -46,8 +46,6 @@ button {
 }
 mat-icon {
     position:absolute;
-}
-mat-icon:hover {
-    color: red;
+    cursor: pointer;
 }
 

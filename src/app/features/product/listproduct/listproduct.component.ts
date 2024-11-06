@@ -1,10 +1,12 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ProductService } from '../../../core/services/product.service';
 import { IProduct } from '../../../models/IProduct';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
+import { AutenticationService } from '../../../core/services/autentication.service';
+import { IUser } from '../../../models/IUser';
 
 @Component({
   selector: 'app-listproduct',
@@ -18,8 +20,9 @@ export class ListproductComponent {
   productsToShow: number = 6;
   products: IProduct[] = [];
   imageId: number | null = null;
+  currentUser$!: Observable<IUser | null>;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private autenticationService: AutenticationService) {}
 
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe({
@@ -30,6 +33,7 @@ export class ListproductComponent {
         console.error('Erro ao carregar produtos: ', error);
       }
     });
+    this.currentUser$ = this.autenticationService.currentUser$;
   }
 
   showProducts(): number {
@@ -40,6 +44,10 @@ export class ListproductComponent {
     return this.productsToShow < this.products.length;
   }
 
-  
+  handleWishList() {
+    this.currentUser$.subscribe(user => {
+      console.log(user?.nome)})
+      
+  }
   
 }
