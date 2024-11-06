@@ -1,5 +1,5 @@
 <mat-accordion multi="true">
-    <mat-expansion-panel>
+    <mat-expansion-panel expanded>
       <mat-expansion-panel-header>
         <mat-panel-title> Tipo </mat-panel-title>
       </mat-expansion-panel-header>
@@ -9,7 +9,7 @@
         </div>
       </ng-container>
     </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+    <mat-expansion-panel expanded (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
       <mat-expansion-panel-header>
         <mat-panel-title> Cor </mat-panel-title>
       </mat-expansion-panel-header>
