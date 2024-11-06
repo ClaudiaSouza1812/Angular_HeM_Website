@@ -35,17 +35,45 @@ export class ProductService {
     );
   }
 
+  getFilteredProducts(filters: { types: string[], colors: string[] }): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(this.urlAPI).pipe(
+      map(products => {
+        if (!Array.isArray(products)) {
+          throw new Error('Invalid API response format');
+        }
+        
+        return products.filter(product => {
+          // Check if we should apply type filter
+          const matchesType = filters.types.includes('Todos') || 
+                            filters.types.includes(product.tipo_de_produto);
+
+          // Check if we should apply color filter
+          const matchesColor = filters.colors.includes('Todos') || 
+                             filters.colors.includes(product.cor);
+
+          return matchesType && matchesColor;
+        });
+      }),
+      catchError(error => {
+        console.error('API Error:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
   getAllProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.urlAPI).pipe(
       map(products => {
-        console.log('Raw API Response:', products); // Debug log
         if (Array.isArray(products)) {
           return products;
         } else {
           throw new Error('Invalid API response format');
         }
       }),
-      catchError(this.errorHandler)
+      catchError(error => {
+        console.error('API Error:', error);
+        return throwError(() => error);
+      })
     );
   }
 
@@ -62,4 +90,6 @@ export class ProductService {
       catchError(this.errorHandler)
     );
   }
+
+  
 }
