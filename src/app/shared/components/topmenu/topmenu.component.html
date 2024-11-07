@@ -33,7 +33,7 @@
     <div class="user-actions">
       <ng-container *ngIf="loggedUser$ | async as user; else loggedOut">
         <p id="welcomeMessage">Bem vindo(a), {{ user?.nome }}</p>
-        <button mat-icon-button aria-label="list_alt">
+        <button routerLink="/wishlist" routerLinkActive="activa" mat-icon-button aria-label="list_alt">
           <mat-icon>list_alt</mat-icon>
         </button>
         <button mat-icon-button aria-label="User">

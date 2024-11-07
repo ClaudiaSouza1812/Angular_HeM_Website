@@ -1,12 +1,9 @@
-import { Component, EventEmitter, Output, Input} from '@angular/core';
-import { ProductService } from '../../../core/services/product.service';
-import { IProduct } from '../../../models/IProduct';
-import { map, Observable } from 'rxjs';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButton } from '@angular/material/button';
-import { AutenticationService } from '../../../core/services/autentication.service';
+import { IProduct } from '../../../models/IProduct';
 import { IUser } from '../../../models/IUser';
+import { Observable } from 'rxjs';
 import { FilterproductComponent } from '../filterproduct/filterproduct.component';
 
 @Component({
@@ -41,7 +38,7 @@ export class ListproductComponent {
   }
 
   hasProduct(): boolean {
-    return this.productsToShow < this.products.length;
+    return this.productsToShow < this.products.length || false;
   }
 
 }

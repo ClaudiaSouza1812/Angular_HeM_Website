@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, Observable, of, switchMap, throwError } from 'rxjs';
-import { IWishlist } from '../../models/iwishlist';
-import { response } from 'express';
+import { IWishlist } from '../../models/IWishlist';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class WishlistService {
 
-  private urlAPI = "http://localhost:3000/produtos";
+  private urlAPI = "http://localhost:3000/wishlist";
 
   constructor(private http: HttpClient) { }
 
@@ -20,20 +20,6 @@ export class WishlistService {
     } else {
       return throwError(() => `Ocorreu um erro! Status: ${error.status}, Message: ${error.message}`);
     }
-  }
-
-  getWishList(): Observable<IWishlist> {
-    return this.http.get<IWishlist>(this.urlAPI).pipe(
-      map(wishlist => {
-        console.log('Raw API Response:', wishlist);
-        if (wishlist) {
-          return wishlist;
-        } else {
-          throw new Error('Invalid API response format');
-        }
-      }),
-      catchError(this.errorHandler)
-    );
   }
 
   getAllWishLists(): Observable<IWishlist[]> {
@@ -75,8 +61,9 @@ export class WishlistService {
     );
   }
 
-  removeFromWishList(userId: number, productId: number): Observable<any> {
-    return this.http.delete(`${this.urlAPI}/${userId}/${productId}`).pipe(
+  removeFromWishList(wishlistId: number): Observable<any> {
+    // Update to use the wishlist item's ID directly
+    return this.http.delete(`${this.urlAPI}/${wishlistId}`).pipe(
       map(response => {
         console.log('Removed from wishlist:', response);
         return response;

@@ -9,11 +9,13 @@ import { AutenticationService } from '../../core/services/autentication.service'
 import { IUser } from '../../models/IUser';
 import { map, Observable, take } from 'rxjs';
 import { WishlistService } from '../../core/services/wishlist.service';
+import { WishlistComponent } from "./wishlist/wishlist.component";
+import { IWishlist } from '../../models/IWishlist';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, HighlightComponent, ListproductComponent, FilterproductComponent],
+  imports: [CommonModule, HighlightComponent, ListproductComponent, FilterproductComponent, WishlistComponent],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
@@ -22,6 +24,7 @@ export class ProductComponent {
   products: IProduct[] = [];
   currentUser$!: Observable<IUser | null>;
   starredProducts: Set<number> = new Set();
+  userWishList: IWishlist[] = [];
 
   constructor(
     private productService: ProductService,
@@ -54,45 +57,54 @@ export class ProductComponent {
       if (user) {
         this.wishlistService.getAllWishLists().subscribe({
           next: (wishlist) => {
-            const userWishlist = wishlist.filter(item => item.user_id === user.id);
-            this.starredProducts = new Set(userWishlist.map(item => item.product_id));
+            this.userWishList = wishlist.filter(item => item.user_id === user.id);
+            this.starredProducts = new Set(this.userWishList.map(item => item.product_id));
           },
           error: (error) => console.error('Error loading wishlist:', error)
         });
       }
     });
-  }
+}
 
-  handleWishList(productId: number) {
-    this.currentUser$.pipe(
-      take(1)
-    ).subscribe(user => {
-      if (user) {
-        this.wishlistService.checkProductInWishList(user.id, productId).pipe(
-          take(1)
-        ).subscribe({
-          next: (isInWishlist) => {
-            if (isInWishlist) {
-              this.wishlistService.removeFromWishList(user.id, productId).subscribe({
+  // product.component.ts
+handleWishList(productId: number) {
+  this.currentUser$.pipe(
+    take(1)
+  ).subscribe(user => {
+    if (user) {
+      this.wishlistService.checkProductInWishList(user.id, productId).pipe(
+        take(1)
+      ).subscribe({
+        next: (isInWishlist) => {
+          if (isInWishlist) {
+            // Find the wishlist item to get its ID
+            const wishlistItem = this.userWishList.find(item => item.product_id === productId);
+            if (wishlistItem && wishlistItem.id) {
+              this.wishlistService.removeFromWishList(wishlistItem.id).subscribe({
                 next: () => {
                   this.starredProducts.delete(productId);
+                  // Update userWishList
+                  this.userWishList = this.userWishList.filter(item => item.product_id !== productId);
                 },
                 error: (error) => console.error('Error removing from wishlist:', error)
               });
-            } else {
-              this.wishlistService.addToWishList(user.id, productId).subscribe({
-                next: () => {
-                  this.starredProducts.add(productId);
-                },
-                error: (error) => console.error('Error adding to wishlist:', error)
-              });
             }
-          },
-          error: (error) => console.error('Error checking wishlist:', error)
-        });
-      }
-    });
-  }
+          } else {
+            this.wishlistService.addToWishList(user.id, productId).subscribe({
+              next: (newWishlistItem) => {
+                this.starredProducts.add(productId);
+                // Update userWishList
+                this.userWishList.push(newWishlistItem);
+              },
+              error: (error) => console.error('Error adding to wishlist:', error)
+            });
+          }
+        },
+        error: (error) => console.error('Error checking wishlist:', error)
+      });
+    }
+  });
+}
 
   loadFilteredProducts(chosenItems: string[]) {
     console.log('Loading filtered products with items:', chosenItems);
