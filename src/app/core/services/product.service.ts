@@ -35,45 +35,62 @@ export class ProductService {
     );
   }
 
-  getFilteredProducts(filters: { types: string[], colors: string[] }): Observable<IProduct[]> {
+  getFilteredProducts(chosenItems: string[]): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.urlAPI).pipe(
       map(products => {
-        if (!Array.isArray(products)) {
-          throw new Error('Invalid API response format');
-        }
+        console.log('Raw API Response:', products);
+        console.log('Chosen Items:', chosenItems);
         
-        return products.filter(product => {
-          // Check if we should apply type filter
-          const matchesType = filters.types.includes('Todos') || 
-                            filters.types.includes(product.tipo_de_produto);
+        if (Array.isArray(products)) {
+          // Return all products if no filters or if only one "All" is selected
+          if (chosenItems.length === 0 || 
+              (chosenItems.length === 1 && (chosenItems.includes('AllTypes') || chosenItems.includes('AllCollors'))) ||
+              (chosenItems.includes('AllTypes') && chosenItems.includes('AllCollors'))) {
+            return products;
+          } 
 
-          // Check if we should apply color filter
-          const matchesColor = filters.colors.includes('Todos') || 
-                             filters.colors.includes(product.cor);
+          // If AllTypes is selected with other filters, filter by colors
+          if (chosenItems.includes('AllTypes')) {
+            return products.filter(product =>  
+              chosenItems.some(item => item !== 'AllTypes' && item === product.cor));
+          } 
 
-          return matchesType && matchesColor;
-        });
+          // If AllCollors is selected with other filters, filter by types
+          if (chosenItems.includes('AllCollors')) {
+            return products.filter(product =>  
+              chosenItems.some(item => item !== 'AllCollors' && item === product.tipo_de_produto));
+          } 
+
+          // If only one filter is selected (not "All")
+          if (chosenItems.length === 1) {
+            return products.filter(product => 
+              chosenItems.includes(product.tipo_de_produto) || 
+              chosenItems.includes(product.cor));
+          }
+
+          // If multiple specific filters selected (not "All")
+          return products.filter(product => 
+            chosenItems.includes(product.tipo_de_produto) && 
+            chosenItems.includes(product.cor));
+        } 
+        
+        throw new Error('Invalid API response format');
       }),
-      catchError(error => {
-        console.error('API Error:', error);
-        return throwError(() => error);
-      })
+      catchError(this.errorHandler)
     );
-  }
+}
 
   getAllProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.urlAPI).pipe(
       map(products => {
+        console.log('Raw API Response:', products); // Debug log
         if (Array.isArray(products)) {
           return products;
         } else {
           throw new Error('Invalid API response format');
         }
       }),
-      catchError(error => {
-        console.error('API Error:', error);
-        return throwError(() => error);
-      })
+      catchError(this.errorHandler)
     );
   }
 

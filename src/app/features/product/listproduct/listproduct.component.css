@@ -48,4 +48,7 @@ mat-icon {
     position:absolute;
     cursor: pointer;
 }
+mat-icon.starClicked {
+    color: red;
+}
 

@@ -8,7 +8,7 @@ import { IUser } from '../../models/IUser';
   providedIn: 'root'
 })
 export class AutenticationService {
-  private urlAPI = "http://localhost:3001/utilizadores";
+  private urlAPI = "http://localhost:3000/utilizadores";
   private currentUser = new BehaviorSubject<IUser | null>(null);
   public currentUser$ = this.currentUser.asObservable();
 

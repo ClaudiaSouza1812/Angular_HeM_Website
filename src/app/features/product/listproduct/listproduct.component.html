@@ -1,3 +1,4 @@
+
 <section class="products-container">
     <h2>Homem</h2>
     <p id="total-results">Total de resultados: {{products.length}}</p>
@@ -11,7 +12,7 @@
             (mouseleave)="imageId=null"
           >
         </a>
-        <mat-icon *ngIf="currentUser$ | async" (click)="handleWishList()">stars</mat-icon>
+        <mat-icon [ngStyle]="{'color': whishListProducts.has(product.id) ? 'red' : 'inherit'}" *ngIf="currentUser$ | async" (click)="handleWishList(product.id)">stars</mat-icon>
         <h4>{{product.nome}}</h4>
         <p>{{product.marca}}</p>
         <p>{{product.tipo_de_produto}}</p>

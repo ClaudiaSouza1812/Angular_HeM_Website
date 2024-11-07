@@ -1,2 +1,2 @@
-<app-filterproduct (filtersChanged)="onFiltersChanged($event)"></app-filterproduct>
-<app-listproduct></app-listproduct>
+<app-filterproduct (filtersChanged)="loadFilteredProducts($event)"></app-filterproduct>
+<app-listproduct [products]="products" [currentUser$]="currentUser$"></app-listproduct>

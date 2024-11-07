@@ -9,65 +9,24 @@ import { AutenticationService } from '../../../core/services/autentication.servi
 import { IUser } from '../../../models/IUser';
 import { FilterproductComponent } from '../filterproduct/filterproduct.component';
 
-interface FilterState {
-  types: string[];
-  colors: string[];
-}
-
 @Component({
   selector: 'app-listproduct',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, FilterproductComponent],
   templateUrl: './listproduct.component.html',
   styleUrl: './listproduct.component.css'
 })
 export class ListproductComponent {
-  products: IProduct[] = [];
+
+  @Input() products: IProduct[] = [];
+  @Input() currentUser$!: Observable<IUser | null>;
   productsToShow: number = 6;
   imageId: number | null = null;
-  currentUser$!: Observable<IUser | null>;
+  whishListProducts: Set<number> = new Set();
 
-  constructor(
-    private productService: ProductService,
-    private autenticationService: AutenticationService
-  ) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.currentUser$ = this.autenticationService.currentUser$;
-    this.loadAllProducts();
-  }
-
-  loadAllProducts() {
-    this.productService.getAllProducts().subscribe({
-      next: (products) => {
-        this.products = products;
-        console.log('Loaded products:', products);
-      },
-      error: (error) => {
-        console.error('Error loading products:', error);
-      }
-    });
-  }
-
-  loadFilteredProducts(filters: FilterState) {
-    console.log('Loading filtered products with filters:', filters);
-    
-    if (filters.types.length === 0 && filters.colors.length === 0) {
-      this.loadAllProducts();
-      return;
-    }
-
-    this.productService.getFilteredProducts(filters).subscribe({
-      next: (products) => {
-        this.products = products;
-        console.log('Filtered products:', products);
-      },
-      error: (error) => {
-        console.error('Error loading filtered products:', error);
-      }
-    });
-  }
-
+  
   showProducts(): number {
     return this.productsToShow += 6;
   }
@@ -76,9 +35,15 @@ export class ListproductComponent {
     return this.productsToShow < this.products.length;
   }
 
-  handleWishList() {
+  handleWishList(productId: number) {
     this.currentUser$.subscribe(user => {
-      console.log(user?.nome);
+      console.log(user?.nome, productId);
     });
+    if (this.whishListProducts.has(productId)) {
+      this.whishListProducts.delete(productId);
+    } else {
+      this.whishListProducts.add(productId);
+    }    
   }
+
 }

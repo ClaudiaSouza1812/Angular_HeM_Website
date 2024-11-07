@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Output, signal, EventEmitter } from '@angular/core';
 import {MatExpansionModule} from '@angular/material/expansion';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatCheckboxChange, MatCheckboxModule} from '@angular/material/checkbox';
 import { ProductService } from '../../../core/services/product.service';
 import { map, Observable } from 'rxjs';
+import { IProduct } from '../../../models/IProduct';
 
 @Component({
   selector: 'app-filterproduct',
@@ -28,31 +29,32 @@ export class FilterproductComponent {
   ngOnInit() {
     this.filterItems$ = this.productService.getAllProducts().pipe(
       map(products => ({
-        type: [...new Set(products.map(product => product.tipo_de_produto))].sort(),
-        color: [...new Set(products.map(product => product.cor))].sort()
-      }))
-    );
-  }
-
-  isItemSelected(item: string): boolean {
-    return this.chosenItems.includes(item);
-  }
-
-  getFilteredOptions(item: string) {
-    const index = this.chosenItems.indexOf(item);
-    if (index > -1) {
-      this.chosenItems.splice(index, 1);
-    } else {
-      if (item === 'Todos') {
-        this.chosenItems = [];
-      } else {
-        const todosIndex = this.chosenItems.indexOf('Todos');
-        if (todosIndex > -1) {
-          this.chosenItems.splice(todosIndex, 1);
-        }
-        this.chosenItems.push(item);
+        type: [... new Set(products.map(product => product.tipo_de_produto))].sort().concat('AllTypes'),
+        color: [... new Set(products.map(product => product.cor))].sort().concat('AllCollors')
       }
+      ))
+    )
+  }
+
+  getFilteredOptions(typeName: string){
+    console.log(typeName);
+    
+    for (let index = 0; index < this.chosenItems.length; index++) {
+      if (this.chosenItems[index] === typeName) {
+        this.chosenItems.splice(index, 1);
+        console.log(this.chosenItems);
+        this.filtersChanged.emit(this.chosenItems);
+        return;
+      };
     }
+    this.chosenItems.push(typeName);
+    console.log(this.chosenItems);
     this.filtersChanged.emit(this.chosenItems);
   }
+
+  getChosenItems(): string[] {
+    console.log(this.chosenItems);
+    return this.chosenItems;
+  }
+
 }
