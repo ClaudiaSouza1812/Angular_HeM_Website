@@ -32,7 +32,7 @@ export class ListproductComponent {
     this.toggleWishlist.emit(productId);
   }
 
-  whishListProducts(productId: number): boolean {
+  isProductStarred(productId: number): boolean {
     return this.starredProducts.has(productId);
   }
 

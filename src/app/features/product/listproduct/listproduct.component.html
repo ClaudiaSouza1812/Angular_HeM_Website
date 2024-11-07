@@ -12,7 +12,7 @@
             (mouseleave)="imageId=null"
           >
         </a>
-        <mat-icon [ngStyle]="{'color': whishListProducts.has(product.id) ? 'red' : 'inherit'}" *ngIf="currentUser$ | async" (click)="handleWishList(product.id)">stars</mat-icon>
+        <mat-icon [ngStyle]="{'color': isProductStarred.has(product.id) ? 'red' : 'inherit'}" *ngIf="currentUser$ | async" (click)="handleWishList(product.id)">stars</mat-icon>
         <h4>{{product.nome}}</h4>
         <p>{{product.marca}}</p>
         <p>{{product.tipo_de_produto}}</p>

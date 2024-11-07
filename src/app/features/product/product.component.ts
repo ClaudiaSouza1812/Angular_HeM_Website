@@ -111,7 +111,7 @@ export class ProductComponent {
     });
   }
 
-  whishListProducts(productId: number): boolean {
+  isProductStarred(productId: number): boolean {
     return this.starredProducts.has(productId);
   }
   
