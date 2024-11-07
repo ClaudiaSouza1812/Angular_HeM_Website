@@ -1,2 +1,2 @@
 <app-filterproduct (filtersChanged)="loadFilteredProducts($event)"></app-filterproduct>
-<app-listproduct [products]="products" [currentUser$]="currentUser$"></app-listproduct>
+<app-listproduct [products]="products" [currentUser$]="currentUser$" [starredProducts]="starredProducts" (toggleWishlist)="handleWishList($event)"></app-listproduct>

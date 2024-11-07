@@ -20,30 +20,28 @@ export class ListproductComponent {
 
   @Input() products: IProduct[] = [];
   @Input() currentUser$!: Observable<IUser | null>;
+  @Input() starredProducts!: Set<number>;
+  @Output() toggleWishlist = new EventEmitter<number>();
+  
   productsToShow: number = 6;
   imageId: number | null = null;
-  whishListProducts: Set<number> = new Set();
 
   constructor() {}
 
-  
+  handleWishList(productId: number) {
+    this.toggleWishlist.emit(productId);
+  }
+
+  whishListProducts(productId: number): boolean {
+    return this.starredProducts.has(productId);
+  }
+
   showProducts(): number {
     return this.productsToShow += 6;
   }
 
   hasProduct(): boolean {
     return this.productsToShow < this.products.length;
-  }
-
-  handleWishList(productId: number) {
-    this.currentUser$.subscribe(user => {
-      console.log(user?.nome, productId);
-    });
-    if (this.whishListProducts.has(productId)) {
-      this.whishListProducts.delete(productId);
-    } else {
-      this.whishListProducts.add(productId);
-    }    
   }
 
 }

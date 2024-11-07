@@ -7,7 +7,8 @@ import { ProductService } from '../../core/services/product.service';
 import { IProduct } from '../../models/IProduct';
 import { AutenticationService } from '../../core/services/autentication.service';
 import { IUser } from '../../models/IUser';
-import { map, Observable } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
+import { WishlistService } from '../../core/services/wishlist.service';
 
 @Component({
   selector: 'app-product',
@@ -20,15 +21,18 @@ export class ProductComponent {
   
   products: IProduct[] = [];
   currentUser$!: Observable<IUser | null>;
+  starredProducts: Set<number> = new Set();
 
   constructor(
     private productService: ProductService,
-    private autenticationService: AutenticationService
+    private autenticationService: AutenticationService,
+    private wishlistService: WishlistService
   ) {}
 
   ngOnInit(): void {
     this.currentUser$ = this.autenticationService.currentUser$;
     this.loadAllProducts();
+    this.loadUserWishlist();
   }
   
   loadAllProducts() {
@@ -39,6 +43,53 @@ export class ProductComponent {
       },
       error: (error) => {
         console.error('Error loading products:', error);
+      }
+    });
+  }
+
+  loadUserWishlist() {
+    this.currentUser$.pipe(
+      take(1)
+    ).subscribe(user => {
+      if (user) {
+        this.wishlistService.getAllWishLists().subscribe({
+          next: (wishlist) => {
+            const userWishlist = wishlist.filter(item => item.user_id === user.id);
+            this.starredProducts = new Set(userWishlist.map(item => item.product_id));
+          },
+          error: (error) => console.error('Error loading wishlist:', error)
+        });
+      }
+    });
+  }
+
+  handleWishList(productId: number) {
+    this.currentUser$.pipe(
+      take(1)
+    ).subscribe(user => {
+      if (user) {
+        this.wishlistService.checkProductInWishList(user.id, productId).pipe(
+          take(1)
+        ).subscribe({
+          next: (isInWishlist) => {
+            if (isInWishlist) {
+              this.wishlistService.removeFromWishList(user.id, productId).subscribe({
+                next: () => {
+                  this.starredProducts.delete(productId);
+                },
+                error: (error) => console.error('Error removing from wishlist:', error)
+              });
+            } else {
+              this.wishlistService.addToWishList(user.id, productId).subscribe({
+                next: () => {
+                  this.starredProducts.add(productId);
+                },
+                error: (error) => console.error('Error adding to wishlist:', error)
+              });
+            }
+          },
+          error: (error) => console.error('Error checking wishlist:', error)
+        });
       }
     });
   }
@@ -58,6 +109,10 @@ export class ProductComponent {
         console.error('Error loading filtered products:', error);
       }
     });
+  }
+
+  whishListProducts(productId: number): boolean {
+    return this.starredProducts.has(productId);
   }
   
 }
