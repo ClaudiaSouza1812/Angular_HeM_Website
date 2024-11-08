@@ -3,14 +3,12 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, Observable, of, switchMap, throwError } from 'rxjs';
 import { IWishlist } from '../../models/IWishlist';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class WishlistService {
 
   private urlAPI = "http://localhost:3000/wishlist";
-
   constructor(private http: HttpClient) { }
 
   private errorHandler(error: HttpErrorResponse) {
@@ -62,7 +60,6 @@ export class WishlistService {
   }
 
   removeFromWishList(wishlistId: number): Observable<any> {
-    // Update to use the wishlist item's ID directly
     return this.http.delete(`${this.urlAPI}/${wishlistId}`).pipe(
       map(response => {
         console.log('Removed from wishlist:', response);

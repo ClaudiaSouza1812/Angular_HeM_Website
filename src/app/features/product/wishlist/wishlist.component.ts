@@ -38,13 +38,9 @@ export class WishlistComponent implements OnInit {
       take(1)
     ).subscribe(user => {
       if (user) {
-        // Use your existing wishlist service
         this.wishlistService.getAllWishLists().subscribe({
           next: (wishlist) => {
-            // Filter wishlist items for current user
             const userWishlist = wishlist.filter(item => item.user_id === user.id);
-            
-            // Get products that match wishlist items
             this.productService.getAllProducts().subscribe({
               next: (products) => {
                 this.wishlistProducts = products.filter(product => 
@@ -65,7 +61,6 @@ export class WishlistComponent implements OnInit {
       take(1)
     ).subscribe(user => {
       if (user) {
-        // Use your existing wishlist service
         this.wishlistService.getAllWishLists().subscribe({
           next: (wishlist) => {
             const wishlistItem = wishlist.find(
@@ -75,7 +70,6 @@ export class WishlistComponent implements OnInit {
             if (wishlistItem && wishlistItem.id) {
               this.wishlistService.removeFromWishList(wishlistItem.id).subscribe({
                 next: () => {
-                  // Remove product from local array
                   this.wishlistProducts = this.wishlistProducts.filter(
                     product => product.id !== productId
                   );

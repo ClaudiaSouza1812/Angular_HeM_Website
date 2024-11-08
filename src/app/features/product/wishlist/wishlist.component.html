@@ -1,26 +1,23 @@
-<!-- wishlist.component.html -->
+<h1 class="wishlist-header">Wishlist</h1>
 <div class="wishlist-container">
-    <div class="wishlist-header">
-      <h1>Lista de Desejos</h1>
-    </div>
-  
-    <div *ngIf="wishlistProducts.length > 0; else emptyWishlist" class="wishlist-items">
-      <div *ngFor="let product of wishlistProducts" class="wishlist-item">
-        <div class="product-image">
-          <img [src]="product.foto_principal" [alt]="product.nome">
+    <div class="wishlist-grid" *ngIf="wishlistProducts.length > 0; else emptyWishlist">
+
+        <div *ngFor="let product of wishlistProducts" class="wishlist-item">
+            <div class="product-image">
+            <img [src]="product.foto_principal" [alt]="product.nome">
+            </div>
+            
+            <div class="product-info">
+            <h3>{{ product.marca }}</h3>
+            <p class="product-name">{{ product.nome }}</p>
+            <p class="product-price">{{ product.preco }}€</p>
+            </div>
+
+            <button class="remove-btn" (click)="removeFromWishlist(product.id)">
+            Remover
+            </button>
         </div>
-        
-        <div class="product-info">
-          <h3>{{ product.marca }}</h3>
-          <p class="product-name">{{ product.nome }}</p>
-          <p class="product-type">{{ product.tipo_de_produto }}</p>
-          <p class="product-price">{{ product.preco }}€</p>
-        </div>
-  
-        <button class="remove-btn" (click)="removeFromWishlist(product.id)">
-          Remover
-        </button>
-      </div>
+
     </div>
   
     <ng-template #emptyWishlist>
