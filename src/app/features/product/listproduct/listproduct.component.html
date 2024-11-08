@@ -4,7 +4,7 @@
     <p id="total-results">Total de resultados: {{products.length}}</p>
     <div class="products-grid">
       <div class="product-card" *ngFor="let product of products.slice(0, productsToShow)">
-        <a href="">
+        <a [routerLink]="['/productdetail', product.id]" routerLinkActive="activa">
           <img 
             [src]="imageId === product.id ? product.foto_secundaria : product.foto_principal" 
             [alt]="product.nome"

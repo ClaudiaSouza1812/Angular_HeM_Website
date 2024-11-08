@@ -94,7 +94,7 @@ export class ProductService {
     );
   }
 
-  getProduct(): Observable<IProduct> {
+  getProduct(productId: number): Observable<IProduct> {
     return this.http.get<IProduct>(this.urlAPI).pipe(
       map(product => {
         console.log('Raw API Response:', product);

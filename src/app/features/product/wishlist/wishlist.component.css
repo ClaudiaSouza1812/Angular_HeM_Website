@@ -12,6 +12,7 @@
   display: grid;
   gap: 1.5rem;
   width: 650px;
+  text-align: center; 
 
   .wishlist-item {
     display: grid;
@@ -23,19 +24,21 @@
     img {
       width: 100%;
     }
+    .product-price {
+      font-size: 2rem;
+    }
+    .remove-btn {
+      background-color: red;
+      color: white;
+      border: none;
+    }
   }
 }
 
 @media (max-width: 480px) {
-  :host {
-    width: 100%;
-  }
-  .wishlist-container {
-    grid-template-columns: 1fr;    
-  }
-
   .wishlist-grid {
-    width: 100%;               
+    width: 100%; 
+    justify-self: center;              
     
     .wishlist-item {
       grid-template-columns: 1fr;  
@@ -43,7 +46,7 @@
         'a'
         'b'
         'c';
-      gap: 15px;  
+      gap: 0px;  
     }
   }
 }

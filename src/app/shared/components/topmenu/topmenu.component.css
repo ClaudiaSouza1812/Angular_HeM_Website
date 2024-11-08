@@ -40,6 +40,30 @@ div {
     font-size: small;
     align-self: center;
 }
+@media (max-width: 480px) {
+    #welcomeMessage {
+        display: none;
+    }
+    .mat-toolbar {
+        padding-bottom: 30px;
+    }
+    .mat-toolbar-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);  
+        grid-template-areas: 
+        'a'
+        'b';
+        padding: 0;
+        nav {
+            grid-area: a;
+        }
+        div {
+            grid-area: b;
+            justify-self: center;
+        }
+    }
+}
 
 
 

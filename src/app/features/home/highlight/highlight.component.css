@@ -38,3 +38,6 @@
     border-radius: 2px;
     box-shadow: 0px 0px 2px 2px rgb(243, 3, 3);
 }
+a:hover {
+    cursor: pointer;
+}

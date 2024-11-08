@@ -4,12 +4,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { IProduct } from '../../../models/IProduct';
 import { IUser } from '../../../models/IUser';
 import { Observable } from 'rxjs';
-import { FilterproductComponent } from '../filterproduct/filterproduct.component';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-listproduct',
   standalone: true,
-  imports: [CommonModule, MatIconModule, FilterproductComponent],
+  imports: [CommonModule, MatIconModule, RouterModule],
   templateUrl: './listproduct.component.html',
   styleUrl: './listproduct.component.css'
 })

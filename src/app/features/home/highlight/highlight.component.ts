@@ -3,11 +3,12 @@ import { IProduct } from '../../../models/IProduct';
 import { ProductService } from '../../../core/services/product.service';
 import { error } from 'console';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-highlight',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './highlight.component.html',
   styleUrl: './highlight.component.css'
 })

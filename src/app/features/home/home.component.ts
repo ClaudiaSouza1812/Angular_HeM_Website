@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CarouselComponent } from './carousel/carousel.component';
 import { HighlightComponent } from './highlight/highlight.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',

@@ -15,7 +15,7 @@ import { IWishlist } from '../../models/IWishlist';
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, HighlightComponent, ListproductComponent, FilterproductComponent, WishlistComponent],
+  imports: [CommonModule, ListproductComponent, FilterproductComponent],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })

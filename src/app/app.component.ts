@@ -8,11 +8,14 @@ import { FooterComponent } from "./shared/components/footer/footer.component";
 import { HomeComponent } from "./features/home/home.component";
 import { LoginmodalComponent } from "./shared/components/loginmodal/loginmodal.component";
 import { LogoutmodalComponent } from "./shared/components/logoutmodal/logoutmodal.component";
+import { NotfoundComponent } from './features/notfound/notfound.component';
+import { ProductComponent } from './features/product/product.component';
+import { WishlistComponent } from './features/product/wishlist/wishlist.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TopmenuComponent, CarouselComponent, HighlightComponent, FooterComponent, HomeComponent, LoginmodalComponent, LogoutmodalComponent],
+  imports: [CommonModule, RouterOutlet, TopmenuComponent, FooterComponent, LoginmodalComponent, LogoutmodalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

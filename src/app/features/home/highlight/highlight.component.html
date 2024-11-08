@@ -2,7 +2,7 @@
     <h3>destaques</h3>
     <div class="products-grid">
         <div class="product-card" *ngFor="let product of highlightedProducts">
-            <a href=""><img [src]="product.foto_principal" alt="product.nome"></a>
+            <a [routerLink]="['/productdetail', product.id]" routerLinkActive="activa"><img [src]="product.foto_principal" alt="product.nome"></a>
         </div>
     </div>
 </section>
