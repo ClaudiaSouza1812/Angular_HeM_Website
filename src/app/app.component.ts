@@ -10,7 +10,7 @@ import { LoginmodalComponent } from "./shared/components/loginmodal/loginmodal.c
 import { LogoutmodalComponent } from "./shared/components/logoutmodal/logoutmodal.component";
 import { NotfoundComponent } from './features/notfound/notfound.component';
 import { ProductComponent } from './features/product/product.component';
-import { WishlistComponent } from './features/product/wishlist/wishlist.component';
+import { WishlistComponent } from './shared/components/wishlist/wishlist.component';
 
 @Component({
   selector: 'app-root',

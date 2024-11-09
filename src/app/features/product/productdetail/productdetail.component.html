@@ -20,8 +20,10 @@
         <div>
             {{ product.descricao }}
         </div>
-        <button class="cart-btn">
-            Adicionar ao Carrinho
-        </button>
+        <ng-container *ngIf="currentUser$">
+            <button class="cart-btn" (click)="addProductToCart()">
+                Adicionar ao Carrinho
+            </button>
+        </ng-container>
     </div>
 </section>

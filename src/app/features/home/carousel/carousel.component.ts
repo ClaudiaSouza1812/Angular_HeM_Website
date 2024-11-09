@@ -21,36 +21,26 @@ export class CarouselComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   private autoSlideSubscription?: Subscription;
 
-  constructor(
-    private carouselService: CarouselService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  constructor(private carouselService: CarouselService) {}
 
   ngOnInit() {
     try {
       this.images = this.carouselService.getCarouselItems();
-      if (isPlatformBrowser(this.platformId)) {
-        this.startAutoSlide();
-      }
+      this.startAutoSlide();
     } catch (error) {
       console.error('Error initializing carousel:', error);
-      // Handle the error appropriately
-      this.images = []; // Set a default value
+      this.images = [];
     }
   }
 
   ngOnDestroy() {
-    if (this.autoSlideSubscription) {
-      this.autoSlideSubscription.unsubscribe();
-    }
+    this.autoSlideSubscription?.unsubscribe();
   }
 
   private startAutoSlide() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.autoSlideSubscription = interval(3000).subscribe(() => {
-        this.nextSlide();
-      });
-    }
+    this.autoSlideSubscription = interval(3000).subscribe(() => {
+      this.nextSlide();
+    });
   }
 
   nextSlide() {

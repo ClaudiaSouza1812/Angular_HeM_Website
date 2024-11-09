@@ -3,13 +3,15 @@ import { WishlistService } from '../../../core/services/wishlist.service';
 import { Observable, take } from 'rxjs';
 import { IWishlist } from '../../../models/IWishlist';
 import { IUser } from '../../../models/IUser';
-import { ListproductComponent } from "../listproduct/listproduct.component";
+import { ListproductComponent } from "../../../features/product/listproduct/listproduct.component";
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../../core/services/product.service';
 import { IProduct } from '../../../models/IProduct';
 import { AutenticationService } from '../../../core/services/autentication.service';
+import { MatIcon } from '@angular/material/icon';
+import { CartService } from '../../../core/services/cart.service';
+import { userInfo } from 'os';
 
-// wishlist.component.ts
 @Component({
   selector: 'app-wishlist',
   standalone: true,
@@ -20,17 +22,18 @@ import { AutenticationService } from '../../../core/services/autentication.servi
 export class WishlistComponent implements OnInit {
   wishlistProducts: IProduct[] = [];
   currentUser$: Observable<IUser | null>;
+  currentUserId?: number;
 
-  constructor(
-    private productService: ProductService,
-    private wishlistService: WishlistService,
-    private autenticationService: AutenticationService
+  constructor(private productService: ProductService, private wishlistService: WishlistService, private autenticationService: AutenticationService, private cartService: CartService
   ) {
     this.currentUser$ = this.autenticationService.currentUser$;
   }
 
   ngOnInit() {
     this.loadWishlistProducts();
+    this.currentUser$.subscribe(user => {
+      this.currentUserId = user?.id;
+    });
   }
 
   loadWishlistProducts() {
@@ -73,6 +76,7 @@ export class WishlistComponent implements OnInit {
                   this.wishlistProducts = this.wishlistProducts.filter(
                     product => product.id !== productId
                   );
+                  alert('Produto removido com sucesso!');
                 },
                 error: (error) => console.error('Error removing from wishlist:', error)
               });
@@ -83,4 +87,33 @@ export class WishlistComponent implements OnInit {
       }
     });
   }
+
+  addToCart(productId: number) {
+    if (!this.currentUserId) {
+      alert('Please log in to add items to cart');
+      return;
+    }
+  
+    const userId = this.currentUserId;
+
+    this.cartService.checkProductInCart(this.currentUserId, productId).subscribe(isInCart => {
+      if (!isInCart) {
+        this.cartService.addToCart(userId, productId).subscribe({
+          next: () => {
+            alert('Produto adicionado ao carrinho de compras!');
+            this.removeFromWishlist(productId);
+          },
+          error: (error) => {
+            console.error('Error adding to cart:', error);
+            alert('Falha ao adicionar ao carrinho de compras!');
+          }
+        });
+      } else {
+        alert('Produto já existe no carrinho!');
+      }
+    });
+  }
+
+
+
 }

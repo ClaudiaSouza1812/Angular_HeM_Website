@@ -4,8 +4,9 @@ import { CarouselComponent } from './features/home/carousel/carousel.component';
 import { HighlightComponent } from './features/home/highlight/highlight.component';
 import { NotfoundComponent } from './features/notfound/notfound.component';
 import { ProductComponent } from './features/product/product.component';
-import { WishlistComponent } from './features/product/wishlist/wishlist.component';
+import { WishlistComponent } from './shared/components/wishlist/wishlist.component';
 import { ProductdetailComponent } from './features/product/productdetail/productdetail.component';
+import { CartComponent } from './shared/components/cart/cart.component';
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent, title: 'Home Page', children: [
@@ -15,5 +16,6 @@ export const routes: Routes = [
     {path: 'product', component: ProductComponent, title: 'Product'},
     {path: 'productdetail/:id', component: ProductdetailComponent, title: 'Product Detail'},
     {path: 'wishlist', component: WishlistComponent, title: 'Wishlist'},
+    {path: 'cart', component: CartComponent, title: 'Cart'},
     {path: '**', component: NotfoundComponent, title: 'Page not found'}
 ];

@@ -38,20 +38,3 @@ img {
     z-index: 2;
     pointer-events: none;
 }
-
-.carousel-indicators {
-    position: sticky;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-}
-
-.carousel-indicators button {
-    color: white;
-}
-
-.carousel-indicators button.active {
-    color: #ff4081;
-}

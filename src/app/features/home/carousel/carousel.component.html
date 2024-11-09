@@ -5,12 +5,4 @@
       <img [src]="image.image" alt="Carousel image">
     </div>
   </div>
-  
-  <div class="carousel-indicators">
-    <button mat-icon-button *ngFor="let image of images; let i = index" 
-            [class.active]="i === currentIndex"
-            (click)="setCurrentSlide(i)">
-      <mat-icon>fiber_manual_record</mat-icon>
-    </button>
-  </div>
 </div>

@@ -12,12 +12,15 @@
             <p class="product-name">{{ product.nome }}</p>
             <p class="product-price">{{ product.preco }}€</p>
             </div>
-
-            <button class="remove-btn" (click)="removeFromWishlist(product.id)">
-            Remover
-            </button>
+            <div class="buttons">
+              <button class="remove-btn" (click)="removeFromWishlist(product.id)">
+                Remover
+              </button>
+              <button class="add-btn" (click)="addToCart(product.id)">
+                <p>adicionar ao <img class="cart" src="/shopping_cart.png" alt=""></p>
+              </button>
+            </div>
         </div>
-
     </div>
   
     <ng-template #emptyWishlist>

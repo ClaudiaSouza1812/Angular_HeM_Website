@@ -9,7 +9,7 @@ import { AutenticationService } from '../../core/services/autentication.service'
 import { IUser } from '../../models/IUser';
 import { map, Observable, take } from 'rxjs';
 import { WishlistService } from '../../core/services/wishlist.service';
-import { WishlistComponent } from "./wishlist/wishlist.component";
+import { WishlistComponent } from "../../shared/components/wishlist/wishlist.component";
 import { IWishlist } from '../../models/IWishlist';
 
 @Component({
@@ -64,47 +64,47 @@ export class ProductComponent {
         });
       }
     });
-}
+  }
 
   // product.component.ts
-handleWishList(productId: number) {
-  this.currentUser$.pipe(
-    take(1)
-  ).subscribe(user => {
-    if (user) {
-      this.wishlistService.checkProductInWishList(user.id, productId).pipe(
-        take(1)
-      ).subscribe({
-        next: (isInWishlist) => {
-          if (isInWishlist) {
-            // Find the wishlist item to get its ID
-            const wishlistItem = this.userWishList.find(item => item.product_id === productId);
-            if (wishlistItem && wishlistItem.id) {
-              this.wishlistService.removeFromWishList(wishlistItem.id).subscribe({
-                next: () => {
-                  this.starredProducts.delete(productId);
+  handleWishList(productId: number) {
+    this.currentUser$.pipe(
+      take(1)
+    ).subscribe(user => {
+      if (user) {
+        this.wishlistService.checkProductInWishList(user.id, productId).pipe(
+          take(1)
+        ).subscribe({
+          next: (isInWishlist) => {
+            if (isInWishlist) {
+              // Find the wishlist item to get its ID
+              const wishlistItem = this.userWishList.find(item => item.product_id === productId);
+              if (wishlistItem && wishlistItem.id) {
+                this.wishlistService.removeFromWishList(wishlistItem.id).subscribe({
+                  next: () => {
+                    this.starredProducts.delete(productId);
+                    // Update userWishList
+                    this.userWishList = this.userWishList.filter(item => item.product_id !== productId);
+                  },
+                  error: (error) => console.error('Error removing from wishlist:', error)
+                });
+              }
+            } else {
+              this.wishlistService.addToWishList(user.id, productId).subscribe({
+                next: (newWishlistItem) => {
+                  this.starredProducts.add(productId);
                   // Update userWishList
-                  this.userWishList = this.userWishList.filter(item => item.product_id !== productId);
+                  this.userWishList.push(newWishlistItem);
                 },
-                error: (error) => console.error('Error removing from wishlist:', error)
+                error: (error) => console.error('Error adding to wishlist:', error)
               });
             }
-          } else {
-            this.wishlistService.addToWishList(user.id, productId).subscribe({
-              next: (newWishlistItem) => {
-                this.starredProducts.add(productId);
-                // Update userWishList
-                this.userWishList.push(newWishlistItem);
-              },
-              error: (error) => console.error('Error adding to wishlist:', error)
-            });
-          }
-        },
-        error: (error) => console.error('Error checking wishlist:', error)
-      });
-    }
-  });
-}
+          },
+          error: (error) => console.error('Error checking wishlist:', error)
+        });
+      }
+    });
+  }
 
   loadFilteredProducts(chosenItems: string[]) {
     console.log('Loading filtered products with items:', chosenItems);
