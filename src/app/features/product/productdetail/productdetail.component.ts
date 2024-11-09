@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductService } from '../../../core/services/product.service';
 import { IProduct } from '../../../models/IProduct';
-import { Observable } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-productdetail',
@@ -14,15 +14,17 @@ import { Observable } from 'rxjs';
 })
 export class ProductdetailComponent {
   productId!: number;
-  product!: Observable<IProduct>;
+  product!: IProduct;
 
   constructor(private route: ActivatedRoute, private productService: ProductService) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.productId =  params['id']; 
-    });
-    this.product = this.productService.getProduct(this.productId);
+    this.route.params.pipe(
+      map(parameter => +parameter['id']),
+      switchMap(id => this.productService.getProduct(id))).subscribe(
+        product => {
+          this.product = product;
+        });
   }
 
 

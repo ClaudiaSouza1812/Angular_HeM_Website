@@ -1,0 +1,43 @@
+:host {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 'a b c';
+}
+section {
+    display: grid;
+    grid-area: b;
+}
+.grid-container {
+    grid-area: b;
+    display: grid;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    text-align: center;
+
+    .brand {
+        font-weight: bold;
+        font-size: 2rem;
+    }
+    .name {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    .images-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 100px;
+    }
+    .type-collor-container {
+        margin-top: 20px;
+    }
+    .price {
+        font-size: 1.5rem;
+    }
+    .cart-btn {
+        margin-top: 15px;
+        padding: 5px 10px;
+        background-color: red;
+        color: white;
+        border: none;
+    }
+}

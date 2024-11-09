@@ -95,13 +95,17 @@ export class ProductService {
   }
 
   getProduct(productId: number): Observable<IProduct> {
-    return this.http.get<IProduct>(this.urlAPI).pipe(
-      map(product => {
-        console.log('Raw API Response:', product);
-        if (product) {
-          return product;
+    return this.http.get<IProduct[]>(this.urlAPI).pipe(
+      map(products => {
+        console.log('Raw API Response:', products);
+        if (Array.isArray(products)) {
+          const product = products.find(product => product.id === productId);
+          if (product) {
+            return product;
+          }
+          throw new Error('Product does not exist');
         } else {
-          throw new Error('Invalid API response format');
+          throw new Error('Invalid API response');
         }
       }),
       catchError(this.errorHandler)
