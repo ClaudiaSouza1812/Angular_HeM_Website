@@ -48,7 +48,7 @@
       </ng-container>
     
       <ng-template #loggedOut>
-        <button mat-icon-button aria-label="Person Add">
+        <button routerLink="/registration" routerLinkActive="activa" mat-icon-button aria-label="Person Add">
           <mat-icon>person_add</mat-icon>
         </button>
         <button mat-icon-button aria-label="Login" (click)="openLoginModal()">

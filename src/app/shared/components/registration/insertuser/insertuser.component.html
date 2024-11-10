@@ -1,0 +1,70 @@
+<div class="registration-container" [formGroup]="userForm">
+    <mat-form-field>
+        <mat-label>Insira seu Nome</mat-label>
+        <input matInput placeholder="Nome Sobrenome" formControlName="nome" />
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Insira a Morada</mat-label>
+        <input matInput placeholder="Praceta, 123" formControlName="morada" />
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Max 8 characters" class="form-field">
+        <mat-label>Insira Código Postal</mat-label>
+        <input
+          matInput
+          #postalInput
+          placeholder="0000-000"
+          formControlName="codigoPostal"
+          (blur)="updateErrorMessage(userForm.get('codigoPostal'), 'Código Postal')"
+          required
+        />
+        @if (userForm.get('codigoPostal')?.touched && userForm.get('codigoPostal')?.invalid) {
+            <mat-error>{{postalErrorMessage()}}</mat-error>
+        }
+        <mat-hint align="end">{{postalInput.value.length || 0}}/8</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Selecione o País</mat-label>
+        <mat-select formControlName="pais">
+          <mat-option value="portugal">Portugal</mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field class="form-field">
+        <mat-label>Insira seu E-mail</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          placeholder="pat@example.com"
+          (blur)="updateErrorMessage(userForm.get('email'), 'Email')"
+          required
+        />
+        @if (userForm.get('email')?.touched && userForm.get('email')?.invalid) {
+          <mat-error>{{emailErrorMessage()}}</mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label>Defina sua senha</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="senha"
+          placeholder="********"
+          (blur)="updateErrorMessage(userForm.get('senha'), 'Senha')"
+          required
+        />
+        @if (userForm.get('senha')?.touched && userForm.get('senha')?.invalid) {
+          <mat-error>{{senhaErrorMessage()}}</mat-error>
+        }
+        <mat-hint>
+          A senha deve conter pelo menos 8 caracteres, incluindo maiúscula, minúscula, número e símbolo.
+        </mat-hint>
+    </mat-form-field>
+
+    <button class="add-user-btn" mat-raised-button (click)="insertUser()" [disabled]="userForm.invalid">
+        Inserir Usuário
+    </button>
+</div>

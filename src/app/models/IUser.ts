@@ -6,4 +6,5 @@ export interface IUser {
     morada: string;
     codigoPostal: string;
     pais: string;
+    add_date: string;
 }
