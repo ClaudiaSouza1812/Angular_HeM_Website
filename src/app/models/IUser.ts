@@ -7,4 +7,5 @@ export interface IUser {
     codigoPostal: string;
     pais: string;
     add_date: string;
+    active: boolean;
 }

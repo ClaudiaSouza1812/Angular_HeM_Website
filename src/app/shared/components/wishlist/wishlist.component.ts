@@ -1,16 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WishlistService } from '../../../core/services/wishlist.service';
 import { Observable, take } from 'rxjs';
-import { IWishlist } from '../../../models/IWishlist';
 import { IUser } from '../../../models/IUser';
-import { ListproductComponent } from "../../../features/product/listproduct/listproduct.component";
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../../core/services/product.service';
 import { IProduct } from '../../../models/IProduct';
 import { AutenticationService } from '../../../core/services/autentication.service';
-import { MatIcon } from '@angular/material/icon';
 import { CartService } from '../../../core/services/cart.service';
-import { userInfo } from 'os';
 
 @Component({
   selector: 'app-wishlist',

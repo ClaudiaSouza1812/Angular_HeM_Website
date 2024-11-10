@@ -8,6 +8,7 @@ import { WishlistComponent } from './shared/components/wishlist/wishlist.compone
 import { ProductdetailComponent } from './features/product/productdetail/productdetail.component';
 import { CartComponent } from './shared/components/cart/cart.component';
 import { RegistrationComponent } from './shared/components/registration/registration.component';
+import { ListuserComponent } from './shared/components/registration/listuser/listuser.component';
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent, title: 'Home Page', children: [
@@ -19,5 +20,6 @@ export const routes: Routes = [
     {path: 'productdetail/:id', component: ProductdetailComponent, title: 'Product Detail'},
     {path: 'wishlist', component: WishlistComponent, title: 'Wishlist'},
     {path: 'cart', component: CartComponent, title: 'Cart'},
+    {path: 'listuser', component: ListuserComponent, title: 'List User'},
     {path: '**', component: NotfoundComponent, title: 'Page not found'}
 ];

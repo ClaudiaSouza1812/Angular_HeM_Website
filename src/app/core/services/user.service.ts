@@ -35,6 +35,8 @@ export class UserService {
   }
 
   insertUser(user: IUser) {
+    user.add_date = new Date().toISOString();
+    user.active = false;
     return this.http.post<IUser>(this.urlAPI, user)
     .pipe(
       tap(user => console.log(user)),concatMap(newUser => this.http.get<IUser[]>(this.urlAPI)));
@@ -42,6 +44,13 @@ export class UserService {
 
   searchUsers(searchValue: string) {
     return this.http.get<IUser[]>(`${this.urlAPI}?title_like=${searchValue}`).pipe(catchError(this.errorHandler));
+  }
+
+  checkIfEmailExists(email: string): Observable<boolean> {
+    return this.http.get<IUser[]>(this.urlAPI).pipe(
+      map(users => users.some(user => user.email.toLowerCase() === email.toLowerCase())),
+      catchError(this.errorHandler)
+    );
   }
 
   deleteUser(id: number) {

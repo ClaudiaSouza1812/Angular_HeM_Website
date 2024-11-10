@@ -1,12 +1,30 @@
 <div class="registration-container" [formGroup]="userForm">
     <mat-form-field>
         <mat-label>Insira seu Nome</mat-label>
-        <input matInput placeholder="Nome Sobrenome" formControlName="nome" />
+        <input 
+          matInput 
+          placeholder="Nome Sobrenome" 
+          formControlName="nome"
+          (blur)="updateErrorMessage(userForm.get('nome'), 'Nome')"
+          required 
+        />
+        @if (userForm.get('nome')?.touched && userForm.get('nome')?.invalid) {
+          <mat-error>{{nomeErrorMessage()}}</mat-error>
+        }
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Insira a Morada</mat-label>
-        <input matInput placeholder="Praceta, 123" formControlName="morada" />
+        <input 
+          matInput 
+          placeholder="Praceta, 123" 
+          formControlName="morada"
+          (blur)="updateErrorMessage(userForm.get('morada'), 'Morada')"
+          required 
+        />
+        @if (userForm.get('morada')?.touched && userForm.get('morada')?.invalid) {
+          <mat-error>{{moradaErrorMessage()}}</mat-error>
+        }
     </mat-form-field>
 
     <mat-form-field hintLabel="Max 8 characters" class="form-field">

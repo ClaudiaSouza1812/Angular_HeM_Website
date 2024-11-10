@@ -34,7 +34,6 @@ export class LoginmodalComponent {
 
   }
 
-  // subscribe the value of isVisible$ to isVisible to show the current visibility of the modal to this class
   ngOnInit() {
     this.loginModalService.isVisible$.subscribe(value => this.isVisible = value);
   }
@@ -68,11 +67,9 @@ export class LoginmodalComponent {
     const passwordInput = this.modalForm.get('passwordInput');
 
     if (emailInput?.valid && passwordInput?.valid) {
-      // Get the values from the form controls
       const email = emailInput.value;
       const password = passwordInput.value;
   
-      // Subscribe to the observable returned by getUser
       this.autenticationService.getUser(email, password).subscribe({
         next: (user) => {
           if (user) {
@@ -84,7 +81,6 @@ export class LoginmodalComponent {
         },
         error: (error) => {
           console.error('Authentication error:', error);
-          // Handle error if needed
         }
       });
     }

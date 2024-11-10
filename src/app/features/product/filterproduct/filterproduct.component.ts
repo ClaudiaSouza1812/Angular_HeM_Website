@@ -36,6 +36,10 @@ export class FilterproductComponent {
     )
   }
 
+  updateFilters(filters: string[]) {
+    this.filtersChanged.emit(filters);
+  }
+  
   getFilteredOptions(typeName: string){
     console.log(typeName);
     

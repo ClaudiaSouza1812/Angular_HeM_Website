@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output, signal } from '@angular/core';
+import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { merge } from 'rxjs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { firstValueFrom} from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { IUser } from '../../../../models/IUser';
+import { UserService } from '../../../../core/services/user.service';
 
 @Component({
   selector: 'app-insertuser',
@@ -20,10 +20,14 @@ export class InsertuserComponent {
 
   @Output() newUser = new EventEmitter<IUser>;
 
+  nomeErrorMessage = signal('');
+  moradaErrorMessage = signal('');
   emailErrorMessage = signal('');
   postalErrorMessage = signal('');
   senhaErrorMessage = signal('');
+
   protected readonly value = signal('');
+  
 
   protected onInput(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -32,7 +36,7 @@ export class InsertuserComponent {
 
   userForm: FormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private userService: UserService) {
     this.userForm = fb.group({
       nome: ['', Validators.required],
       morada: ['', Validators.required],
@@ -53,6 +57,12 @@ export class InsertuserComponent {
     let errorSignal: ReturnType<typeof signal<string>>;
     
     switch (fieldName) {
+      case 'Nome':
+        errorSignal = this.nomeErrorMessage;
+        break;
+      case 'Morada':
+        errorSignal = this.moradaErrorMessage;
+        break;
       case 'Email':
         errorSignal = this.emailErrorMessage;
         break;
@@ -65,7 +75,7 @@ export class InsertuserComponent {
       default:
         return;
     }
-  
+
     if (item.hasError('required')) {
       errorSignal.set(`${fieldName} é obrigatório`);
     } else if (item.hasError('email')) {
@@ -86,15 +96,27 @@ export class InsertuserComponent {
     }
   }
 
-  insertUser() {
-    console.log(this.userForm.value);
-    console.log("Invalid: ", this.userForm.invalid);
-
+  async insertUser() {
     if (this.userForm.invalid) {
-      alert("O formulário é inválido")
-    } else {
+      alert("O formulário é inválido");
+      return;
+    }
+  
+    const email = this.userForm.get('email')?.value;
+    
+    try {
+      const emailExists = await firstValueFrom(this.userService.checkIfEmailExists(email));
+      
+      if (emailExists) {
+        alert('Este email já está cadastrado');
+        return;
+      }
+      
       this.newUser.emit(this.userForm.value);
       this.userForm.reset();
+    } catch (error) {
+      console.error('Error checking email:', error);
+      alert('Erro ao verificar email');
     }
   }
 
