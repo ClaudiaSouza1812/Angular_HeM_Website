@@ -21,12 +21,15 @@ export class CarouselComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   private autoSlideSubscription?: Subscription;
 
-  constructor(private carouselService: CarouselService) {}
+  constructor(private carouselService: CarouselService, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit() {
     try {
       this.images = this.carouselService.getCarouselItems();
-      this.startAutoSlide();
+      // Only start auto-slide in browser
+      if (isPlatformBrowser(this.platformId)) {
+        this.startAutoSlide();
+      }
     } catch (error) {
       console.error('Error initializing carousel:', error);
       this.images = [];
