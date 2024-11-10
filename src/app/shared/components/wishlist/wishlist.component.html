@@ -1,32 +1,32 @@
-<h1 class="wishlist-header">Wishlist</h1>
+<h1 class="wishlist-header">Lista de Desejos</h1>
 <div class="wishlist-container">
-    <div class="wishlist-grid" *ngIf="wishlistProducts.length > 0; else emptyWishlist">
+  <div class="wishlist-grid" *ngIf="wishlistProducts.length > 0; else emptyWishlist">
 
-        <div *ngFor="let product of wishlistProducts" class="wishlist-item">
-            <div class="product-image">
-            <img [src]="product.foto_principal" [alt]="product.nome">
-            </div>
-            
-            <div class="product-info">
-            <h3>{{ product.marca }}</h3>
-            <p class="product-name">{{ product.nome }}</p>
-            <p class="product-price">{{ product.preco }}€</p>
-            </div>
-            <div class="buttons">
-              <button class="remove-btn" (click)="removeFromWishlist(product.id)">
-                Remover
-              </button>
-              <button class="add-btn" (click)="addToCart(product.id)">
-                <p>adicionar ao <img class="cart" src="/shopping_cart.png" alt=""></p>
-              </button>
-            </div>
-        </div>
-    </div>
-  
-    <ng-template #emptyWishlist>
-      <div class="empty-wishlist">
-        <p>Sua lista de desejos está vazia</p>
-        <a routerLink="/produtos" class="continue-shopping">Continuar Comprando</a>
+      <div *ngFor="let product of wishlistProducts" class="wishlist-item">
+          <div class="product-image">
+          <img [src]="product.foto_principal" [alt]="product.nome">
+          </div>
+          
+          <div class="product-info">
+          <h3>{{ product.marca }}</h3>
+          <p class="product-name">{{ product.nome }}</p>
+          <p class="product-price">{{ product.preco }}€</p>
+          </div>
+          <div class="buttons">
+            <button class="remove-btn" (click)="removeFromWishlist(product.id)">
+              Remover
+            </button>
+            <button class="add-btn" (click)="addToCart(product.id)">
+              <p>adicionar ao <img class="cart" src="/shopping_cart.png" alt=""></p>
+            </button>
+          </div>
       </div>
-    </ng-template>
   </div>
+
+  <ng-template #emptyWishlist>
+    <div class="empty-wishlist">
+      <p>Sua lista de desejos está vazia</p>
+      <button routerLink="/product" routerLinkActive="activa" class="button">Continuar Comprando</button>
+    </div>
+  </ng-template>
+</div>

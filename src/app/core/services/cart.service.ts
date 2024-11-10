@@ -37,7 +37,7 @@ export class CartService {
   addToCart(userId: number, productId: number,): Observable<ICart> {
     return this.getAllCarts().pipe(
       map(cart => {
-        console.log('Current cart items:', cart); // Log existing cart items
+        console.log('Current cart items:', cart); 
         const maxId = cart.length > 0 ? Math.max(...cart.map(item => item.id || 0)) : 0;
         const nextId = maxId + 1;
   
@@ -47,19 +47,19 @@ export class CartService {
           product_id: productId,
           add_date: new Date().toISOString()
         };
-        console.log('New cart item to be added:', newCart); // Log new item
+        console.log('New cart item to be added:', newCart); 
         return newCart;
       }),
       switchMap(cartItem => {
-        console.log('Making POST request with:', cartItem); // Log before POST
+        console.log('Making POST request with:', cartItem); 
         return this.http.post<ICart>(this.urlAPI, cartItem);
       }),
       map(response => {
-        console.log('Server response after adding to cart:', response); // Log server response
+        console.log('Server response after adding to cart:', response); 
         return response;
       }),
       catchError(error => {
-        console.error('Error adding to cart:', error); // Better error logging
+        console.error('Error adding to cart:', error); 
         return this.errorHandler(error);
       })
     );

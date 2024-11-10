@@ -26,7 +26,6 @@ export class CarouselComponent implements OnInit, OnDestroy {
   ngOnInit() {
     try {
       this.images = this.carouselService.getCarouselItems();
-      // Only start auto-slide in browser
       if (isPlatformBrowser(this.platformId)) {
         this.startAutoSlide();
       }

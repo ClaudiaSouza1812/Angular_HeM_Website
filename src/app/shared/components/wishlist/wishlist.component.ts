@@ -7,11 +7,12 @@ import { ProductService } from '../../../core/services/product.service';
 import { IProduct } from '../../../models/IProduct';
 import { AutenticationService } from '../../../core/services/autentication.service';
 import { CartService } from '../../../core/services/cart.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-wishlist',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.scss']
 })

@@ -1,23 +1,23 @@
 
 <section class="products-container">
-    <h2>Homem</h2>
-    <p id="total-results">Total de resultados: {{products.length}}</p>
-    <div class="products-grid">
-      <div class="product-card" *ngFor="let product of products.slice(0, productsToShow)">
-        <a [routerLink]="['/productdetail', product.id]" routerLinkActive="activa">
-          <img 
-            [src]="imageId === product.id ? product.foto_secundaria : product.foto_principal" 
-            [alt]="product.nome"
-            (mouseenter)="imageId=product.id" 
-            (mouseleave)="imageId=null"
-          >
-        </a>
-        <mat-icon [ngStyle]="{'color': starredProducts.has(product.id) ? 'red' : 'inherit'}" *ngIf="currentUser$ | async" (click)="handleWishList(product.id)">stars</mat-icon>
-        <h4>{{product.nome}}</h4>
-        <p>{{product.marca}}</p>
-        <p>{{product.tipo_de_produto}}</p>
-        <h5>{{product.preco}}€</h5>
-      </div>
+  <h2>Homem</h2>
+  <p id="total-results">Total de resultados: {{products.length}}</p>
+  <div class="products-grid">
+    <div class="product-card" *ngFor="let product of products.slice(0, productsToShow)">
+      <a [routerLink]="['/productdetail', product.id]" routerLinkActive="activa">
+        <img 
+          [src]="imageId === product.id ? product.foto_secundaria : product.foto_principal" 
+          [alt]="product.nome"
+          (mouseenter)="imageId=product.id" 
+          (mouseleave)="imageId=null"
+        >
+      </a>
+      <mat-icon [ngStyle]="{'color': starredProducts.has(product.id) ? 'red' : 'inherit'}" *ngIf="currentUser$ | async" (click)="handleWishList(product.id)">stars</mat-icon>
+      <h4>{{product.nome}}</h4>
+      <p>{{product.marca}}</p>
+      <p>{{product.tipo_de_produto}}</p>
+      <h5>{{product.preco}}€</h5>
     </div>
-    <button id="see-more" *ngIf="hasProduct()" (click)="showProducts()">Ver mais</button>
-  </section>
+  </div>
+  <button id="see-more" *ngIf="hasProduct()" (click)="showProducts()">Ver mais</button>
+</section>

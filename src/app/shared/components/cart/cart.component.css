@@ -44,6 +44,20 @@
     }
   }
   
+.empty-cart {
+  grid-area: b;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+}
+.button {
+  
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px;
+  
+}
   @media (max-width: 480px) {
     .cart-grid {
       width: 100%; 

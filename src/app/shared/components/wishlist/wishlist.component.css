@@ -45,6 +45,20 @@
     }
   }
 }
+.empty-wishlist {
+  grid-area: b;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+}
+.button {
+  grid-area: b;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px;
+  
+}
 
 @media (max-width: 480px) {
   .wishlist-grid {

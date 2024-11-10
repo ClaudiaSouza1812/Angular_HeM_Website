@@ -1,27 +1,27 @@
-<h1 class="cart-header">Cart</h1>
+<h1 class="cart-header">Carrinho</h1>
 <div class="cart-container">
-    <div class="cart-grid" *ngIf="cartProducts.length > 0; else emptyCart">
-        <p class="total-results">Total de resultados: {{cartProducts.length}}</p>
-        <div *ngFor="let product of cartProducts" class="cart-item">
-            <div class="product-image">
-            <a [routerLink]="['/productdetail', product.id]" routerLinkActive="activa"><img [src]="product.foto_principal" [alt]="product.nome"></a>
-            </div>
-            <div class="product-info">
-            <h5>{{ product.marca }}</h5>
-            <p class="product-name">{{ product.nome }}</p>
-            <p class="product-price">{{ product.preco }}€</p>
-            </div>
+  <div class="cart-grid" *ngIf="cartProducts.length > 0; else emptyCart">
+      <p class="total-results">Total de resultados: {{cartProducts.length}}</p>
+      <div *ngFor="let product of cartProducts" class="cart-item">
+          <div class="product-image">
+          <a [routerLink]="['/productdetail', product.id]" routerLinkActive="activa"><img [src]="product.foto_principal" [alt]="product.nome"></a>
+          </div>
+          <div class="product-info">
+          <h5>{{ product.marca }}</h5>
+          <p class="product-name">{{ product.nome }}</p>
+          <p class="product-price">{{ product.preco }}€</p>
+          </div>
 
-            <button class="remove-btn" (click)="removeFromCart(product.id)">
-            Remover
-            </button>
-        </div>
-        <p class="total">Total: {{ totalPrice | currency }}</p>
-    </div>
-    <ng-template #emptyCart>
-      <div class="empty-cart">
-        <p>Sua lista de desejos está vazia</p>
-        <a routerLink="/produtos" class="continue-shopping">Continuar Comprando</a>
+          <button class="remove-btn" (click)="removeFromCart(product.id)">
+          Remover
+          </button>
       </div>
-    </ng-template>
+      <p class="total">Total: {{ totalPrice | currency }}</p>
   </div>
+  <ng-template #emptyCart>
+    <div class="empty-cart">
+      <p>Sua lista de desejos está vazia</p>
+      <button routerLink="/product" routerLinkActive="activa" class="button">Continuar Comprando</button>
+    </div>
+  </ng-template>
+</div>

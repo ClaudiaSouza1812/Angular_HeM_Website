@@ -24,7 +24,7 @@ export class ProductService {
   getHighlightProduct(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.urlAPI).pipe(
       map(products => {
-        console.log('Raw API Response:', products); // Debug log
+        console.log('Raw API Response:', products); 
         if (Array.isArray(products)) {
           return products.filter(product => product.categoria === 'destaque');
         } else {
@@ -42,33 +42,28 @@ export class ProductService {
         console.log('Chosen Items:', chosenItems);
         
         if (Array.isArray(products)) {
-          // Return all products if no filters or if only one "All" is selected
           if (chosenItems.length === 0 || 
               (chosenItems.length === 1 && (chosenItems.includes('AllTypes') || chosenItems.includes('AllCollors'))) ||
               (chosenItems.includes('AllTypes') && chosenItems.includes('AllCollors'))) {
             return products;
           } 
 
-          // If AllTypes is selected with other filters, filter by colors
           if (chosenItems.includes('AllTypes')) {
             return products.filter(product =>  
               chosenItems.some(item => item !== 'AllTypes' && item === product.cor));
           } 
 
-          // If AllCollors is selected with other filters, filter by types
           if (chosenItems.includes('AllCollors')) {
             return products.filter(product =>  
               chosenItems.some(item => item !== 'AllCollors' && item === product.tipo_de_produto));
           } 
 
-          // If only one filter is selected (not "All")
           if (chosenItems.length === 1) {
             return products.filter(product => 
               chosenItems.includes(product.tipo_de_produto) || 
               chosenItems.includes(product.cor));
           }
 
-          // If multiple specific filters selected (not "All")
           return products.filter(product => 
             chosenItems.includes(product.tipo_de_produto) && 
             chosenItems.includes(product.cor));
@@ -83,7 +78,7 @@ export class ProductService {
   getAllProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.urlAPI).pipe(
       map(products => {
-        console.log('Raw API Response:', products); // Debug log
+        console.log('Raw API Response:', products); 
         if (Array.isArray(products)) {
           return products;
         } else {

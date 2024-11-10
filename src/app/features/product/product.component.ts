@@ -66,7 +66,6 @@ export class ProductComponent {
     });
   }
 
-  // product.component.ts
   handleWishList(productId: number) {
     this.currentUser$.pipe(
       take(1)
@@ -77,13 +76,11 @@ export class ProductComponent {
         ).subscribe({
           next: (isInWishlist) => {
             if (isInWishlist) {
-              // Find the wishlist item to get its ID
               const wishlistItem = this.userWishList.find(item => item.product_id === productId);
               if (wishlistItem && wishlistItem.id) {
                 this.wishlistService.removeFromWishList(wishlistItem.id).subscribe({
                   next: () => {
                     this.starredProducts.delete(productId);
-                    // Update userWishList
                     this.userWishList = this.userWishList.filter(item => item.product_id !== productId);
                   },
                   error: (error) => console.error('Error removing from wishlist:', error)
@@ -93,7 +90,6 @@ export class ProductComponent {
               this.wishlistService.addToWishList(user.id, productId).subscribe({
                 next: (newWishlistItem) => {
                   this.starredProducts.add(productId);
-                  // Update userWishList
                   this.userWishList.push(newWishlistItem);
                 },
                 error: (error) => console.error('Error adding to wishlist:', error)
