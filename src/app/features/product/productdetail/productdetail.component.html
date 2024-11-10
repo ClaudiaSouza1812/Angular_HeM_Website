@@ -1,0 +1,29 @@
+<section>
+    <div class="grid-container">
+        <div class="brand">
+            {{ product.marca }}
+        </div>
+        <div class="name">
+            {{ product.nome }}
+        </div>
+        <div class="images-container">
+            <img src="{{ product.foto_principal }}" alt="foto_principal">
+            <img src="{{ product.foto_secundaria }}" alt="foto_secundaria">
+        </div>
+        <div class="type-collor-container">
+            {{ product.tipo_de_produto }} 
+            {{ product.cor}}
+        </div>
+        <div class="price">
+            {{ product.preco }}€
+        </div>
+        <div>
+            {{ product.descricao }}
+        </div>
+        <ng-container *ngIf="currentUser$">
+            <button class="cart-btn" (click)="addProductToCart()">
+                Adicionar ao Carrinho
+            </button>
+        </ng-container>
+    </div>
+</section>

@@ -1,0 +1,55 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+    background-color: white;
+    padding: 15px;
+    width: 350px;
+    max-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#closeButton {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    background-color: white;
+    line-height: 25px;
+    width: 30px;
+    text-align: center;
+    font-weight: bold;
+    border: 3px solid #666;
+    border-radius: 50%;
+    box-shadow: 3px 3px 5px #000;
+    user-select: none;
+}
+#email > input, #password > input {
+    width: 240px;
+}
+.validation{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 25px;
+}
+
+#validationButton {
+    color: white;
+    background-color: #0d6efd;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+#emailMessage, #passwordMessage {
+    color: red;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+}

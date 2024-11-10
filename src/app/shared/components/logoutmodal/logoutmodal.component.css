@@ -1,0 +1,65 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    background-color: white;
+    padding: 15px;
+    width: 500px;
+    max-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+}
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dee2e6;
+}
+#header h4 {
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+}
+#closeButton {
+    text-align: center;
+    padding: 0;
+    cursor: pointer;
+}
+
+#validation {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+#validation p {
+    display: flex;
+    padding: 10px 0px 0px 5px;
+    margin: 0;
+}
+#validationButton {
+    color: white;
+    background-color: #0d6efd;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+#validationButton:hover {
+    background-color: gray;
+}
+#message {
+    font-size: small;
+    padding: 10px 0px 15px 0px;
+    margin: 0;
+    border-bottom: 1px solid #dee2e6;
+}

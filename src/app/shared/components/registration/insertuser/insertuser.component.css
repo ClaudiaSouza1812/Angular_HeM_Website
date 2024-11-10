@@ -1,0 +1,15 @@
+.registration-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+mat-form-field {
+    width: 300px; 
+}
+.add-user-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    margin-top: 30px;
+}

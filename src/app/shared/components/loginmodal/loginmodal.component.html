@@ -1,0 +1,27 @@
+<div *ngIf="isVisible">
+    <div class="modal" [style.display]="isVisible ? 'block' : 'none'">
+        <div class="modal-content">
+            <form [formGroup]="modalForm">
+                <span id="closeButton" (click)="closeModal()">X</span>
+                <h4 id="loginHeader">Controlo de acessos</h4>
+                <p id="emailMessage">
+                    {{currentEmailMessage}}
+                </p>
+                <p id="email">
+                    <label for="emailInput">E-mail:</label>
+                    <input type="email" formControlName="emailInput" placeholder="Email" (blur)="showErrorMessage('email')">
+                </p>
+                <p id="passwordMessage">
+                    {{currentPasswordMessage}}
+                </p>
+                <p id="password">
+                    <label for="passwordInput">Senha:</label>
+                    <input type="password" formControlName="passwordInput" placeholder="Senha" (blur)="showErrorMessage('password')">
+                </p>
+                <p class="validation">
+                    <input type="button" id="validationButton" value="Validar" (click)="validateUser()">
+                </p>
+            </form>
+        </div>
+    </div>
+</div>

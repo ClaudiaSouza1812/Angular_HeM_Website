@@ -1,0 +1,78 @@
+.wishlist-header {
+  text-align: center; 
+}
+.wishlist-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 'a b c';
+}
+
+.wishlist-grid {
+  grid-area: b;
+  display: grid;
+  gap: 1.5rem;
+  width: 650px;
+  text-align: center; 
+
+  .wishlist-item {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 'a b c';
+    align-items: center;
+    gap: 30px;
+
+    img {
+      width: 100%;
+    }
+    .product-price {
+      font-size: 2rem;
+    }
+    .buttons {
+      display: grid;
+      gap: 20px;
+      width: 150px;
+    }
+    .remove-btn, .add-btn {
+      background-color: red;
+      color: white;
+      border: none;
+    }
+    .add-btn p {
+      margin-bottom: 5px;
+    }
+    .cart {
+      width: 20px;
+    }
+  }
+}
+.empty-wishlist {
+  grid-area: b;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+}
+.button {
+  grid-area: b;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px;
+  
+}
+
+@media (max-width: 480px) {
+  .wishlist-grid {
+    width: 100%; 
+    justify-self: center;              
+    
+    .wishlist-item {
+      grid-template-columns: 1fr;  
+      grid-template-areas: 
+        'a'
+        'b'
+        'c';
+      gap: 0px;  
+    }
+  }
+}
+

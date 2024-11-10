@@ -1,0 +1,8 @@
+<div class="carousel-container">
+  <div class="fixed-carousel-text">saldos</div>
+  <div class="carousel-content" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
+    <div class="carousel-slide" *ngFor="let image of images">
+      <img [src]="image.image" alt="Carousel image">
+    </div>
+  </div>
+</div>

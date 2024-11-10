@@ -1,0 +1,13 @@
+:host {
+    display: grid;
+    grid-template-columns: 36% 1fr;
+    grid-template-areas: "a b";
+    gap: 20px;
+}
+app-filterproduct {
+    grid-area: a;
+}
+app-listproduct {
+    grid-area: b;
+}
+

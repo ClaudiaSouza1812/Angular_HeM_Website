@@ -1,0 +1,23 @@
+<mat-accordion multi="true">
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Tipo </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ng-container *ngIf="filterItems$ | async as filters">
+        <div *ngFor="let type of filters.type">
+          <mat-checkbox (change)="getFilteredOptions(type)">{{type === 'AllTypes' ? 'Todos' : type }}</mat-checkbox>
+        </div>
+      </ng-container>
+    </mat-expansion-panel>
+    <mat-expansion-panel expanded (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Cor </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ng-container *ngIf="filterItems$ | async as filters">
+        <div *ngFor="let color of filters.color">
+          <mat-checkbox (change)="getFilteredOptions(color)">{{ color === 'AllCollors' ? 'Todos' : color}}</mat-checkbox>
+        </div>
+      </ng-container>
+    </mat-expansion-panel>
+  </mat-accordion>
+  

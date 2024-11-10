@@ -1,0 +1,19 @@
+<div class="user-info" *ngIf="currentUser$ | async as user">
+    <div class="header">
+        <h3>Perfil</h3>
+    </div>
+    
+    <div class="user-details">
+        <p><strong>Nome:</strong> {{user.nome}}</p>
+        <p><strong>Email:</strong> {{user.email}}</p>
+        <p><strong>Senha:</strong> ********</p>
+        <p><strong>Morada:</strong> {{user.morada}}</p>
+        <p><strong>Código Postal:</strong> {{user.codigoPostal}}</p>
+        <p><strong>País:</strong> {{user.pais}}</p>
+    </div>
+    <div class="button-container">
+        <button class="change-btn">
+            Alterar Informações
+        </button>
+    </div>
+</div>

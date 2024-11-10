@@ -1,0 +1,26 @@
+<div *ngIf="isVisible$ | async">
+  <div class="modal">
+    <div class="modal-content">
+      <div id="header">
+        <h4>Registo de utilizador</h4>
+      </div>
+      <div>
+        <p id="message">
+          Utilizador registado com sucesso.
+        </p>
+      </div>
+      <div id="validation">
+        <p>
+          <input 
+            routerLink="/home" 
+            routerLinkActive="activa" 
+            type="button" 
+            id="validationButton" 
+            value="OK" 
+            (click)="closeModal()"
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

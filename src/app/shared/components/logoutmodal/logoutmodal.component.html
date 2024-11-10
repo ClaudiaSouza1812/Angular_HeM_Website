@@ -1,0 +1,23 @@
+<div *ngIf="isVisible">
+    <div class="modal" [style.display]="isVisible ? 'block' : 'none'">
+        <div class="modal-content">
+            <div id="header">
+                <h4>Fecho de Sessão</h4>
+                <span id="closeButton" (click)="closeModal()">X</span>
+            </div>
+            <div>
+                <p id="message">
+                    Quer terminar a sessão?
+                </p>
+            </div>
+            <div id="validation">
+                <p>
+                    <input type="button" id="validationButton" value="Sim" (click)="logoutUser()">
+                </p>
+                <p>
+                    <input type="button" id="validationButton" value="Não" (click)="closeModal()">
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
