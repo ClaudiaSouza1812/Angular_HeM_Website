@@ -73,7 +73,7 @@ export class WishlistComponent implements OnInit {
                   this.wishlistProducts = this.wishlistProducts.filter(
                     product => product.id !== productId
                   );
-                  alert('Produto removido com sucesso!');
+                  alert('Produto removido com sucesso da Lista de Desejos!');
                 },
                 error: (error) => console.error('Error removing from wishlist:', error)
               });
