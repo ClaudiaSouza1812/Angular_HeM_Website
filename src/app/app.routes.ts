@@ -10,16 +10,17 @@ import { CartComponent } from './shared/components/cart/cart.component';
 import { RegistrationComponent } from './shared/components/registration/registration.component';
 import { ListuserComponent } from './shared/components/registration/listuser/listuser.component';
 
+/* page title commented because it override the static title (H&M – Loja) on index.html */
 export const routes: Routes = [
-    {path: 'home', component: HomeComponent, title: 'Home Page', children: [
+    {path: 'home', component: HomeComponent, /* title: 'Home Page', */ children: [
         {path: '', component: CarouselComponent}, {path: '', component: HighlightComponent}
     ]},
     {path: '', pathMatch: 'full', redirectTo: 'home'},
-    {path: 'registration', component: RegistrationComponent, title: 'Registration'},
-    {path: 'product', component: ProductComponent, title: 'Product'},
-    {path: 'productdetail/:id', component: ProductdetailComponent, title: 'Product Detail'},
-    {path: 'wishlist', component: WishlistComponent, title: 'Wishlist'},
-    {path: 'cart', component: CartComponent, title: 'Cart'},
-    {path: 'listuser', component: ListuserComponent, title: 'List User'},
-    {path: '**', component: NotfoundComponent, title: 'Page not found'}
+    {path: 'registration', component: RegistrationComponent, /* title: 'Registration' */},
+    {path: 'product', component: ProductComponent, /* title: 'Product' */},
+    {path: 'productdetail/:id', component: ProductdetailComponent, /* title: 'Product Detail' */},
+    {path: 'wishlist', component: WishlistComponent, /* title: 'Wishlist' */},
+    {path: 'cart', component: CartComponent, /* title: 'Cart' */},
+    {path: 'listuser', component: ListuserComponent, /* title: 'List User' */},
+    {path: '**', component: NotfoundComponent, /* title: 'Page not found' */}
 ];

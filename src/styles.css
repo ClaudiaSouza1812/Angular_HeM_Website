@@ -1,36 +1,35 @@
+/* angular special selector that targets the component of which the styles belong, in this case, the index.html */
 :host {
     text-align: center;
     display: block; 
     width: 100%; 
 }
-html, body {
-    height: 100%;
+body {
     margin: 0;
     padding: 0;
-    width: 100%;
-}
-
-body {
+    width: 100%; 
     font-family: "Open Sans", sans-serif;
     display: flex;
     justify-content: center;
 }
-
 app-root {
-    width: 100%;
-    max-width: 1400px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    max-width: 1400px;        /* Maximum width constraint */
+    width: 100%;              /* Takes full available width up to max-width */
+    display: flex;            /* Enables flex layout */
+    flex-direction: column;   /* Stacks children (header, main, footer) vertically */
+    min-height: 100vh;        /* Takes at least full viewport height */
 }
 
+/* all the styles bellow are indirectly styling <app-root> through inheritance: */
+/* redundant:  because of the flex-direction: column on the parent (app-root), flex items (header, main, footer) automatically stretch to the container's width - this is the default behavior of align-items: stretch in flex layout. */
 header, main, footer {
     width: 100%;
 }
-
 main {
-    flex: 1;
+    flex: 1;    /* Takes remaining vertical space between header and footer */
 }
+
+/* not using: it was at  <app-root> and i forgot to take it out */
 .content-container {
     width: 100%;
     max-width: 1400px;
