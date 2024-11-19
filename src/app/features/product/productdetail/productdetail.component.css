@@ -26,6 +26,11 @@ section {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 100px;
+
+        /* improvement applied after project delivery */
+        @media (max-width: 480px) {
+            grid-template-columns: 1fr;
+        }
     }
     .type-collor-container {
         margin-top: 20px;
