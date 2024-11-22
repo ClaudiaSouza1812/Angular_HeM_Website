@@ -1,8 +1,16 @@
 <mat-toolbar>
+  <!-- Since we only have one row, we could not use mat-toolbar-row -->
   <mat-toolbar-row>
     <nav>
-      <button mat-button [matMenuTriggerFor]="menMenu" #menuTrigger="matMenuTrigger"
-      (mouseenter)="openMenu()">Homem</button>
+      <!--
+      Alternative Approaches:
+      01 - Using only the template reference variable (#menuTrigger) to trigger the matMenuTrigger functions, no need of @ViewChild():
+        <button mat-button [matMenuTriggerFor]="menMenu" #menuTrigger="matMenuTrigger" (mouseenter)="menuTrigger.openMenu()">Homem</button>
+        <mat-menu #menMenu="matMenu" [hasBackdrop]="false">
+            <div class="menu-items" (mouseenter)="menuTrigger.openMenu()" (mouseleave)="menuTrigger.closeMenu()">
+      -->
+      <!-- #menuTrigger: template reference variable -->
+      <button mat-button [matMenuTriggerFor]="menMenu" #menuTrigger="matMenuTrigger" (mouseenter)="openMenu()">Homem</button>
       <mat-menu #menMenu="matMenu" [hasBackdrop]="false">
           <div class="menu-items" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
               <button mat-menu-item>Casacos</button>
