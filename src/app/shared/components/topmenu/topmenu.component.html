@@ -1,3 +1,4 @@
+<!-- <mat-toolbar> is a container for headers, titles, or actions. -->
 <mat-toolbar>
   <!-- Since we only have one row, we could not use mat-toolbar-row -->
   <mat-toolbar-row>
@@ -9,7 +10,11 @@
         <mat-menu #menMenu="matMenu" [hasBackdrop]="false">
             <div class="menu-items" (mouseenter)="menuTrigger.openMenu()" (mouseleave)="menuTrigger.closeMenu()">
       -->
-      <!-- #menuTrigger: template reference variable -->
+      <!-- #menuTrigger, #menMenu: template reference variables -->
+      <!-- matMenuTrigger, matMenu: data types -->
+      <!-- [matMenuTriggerFor]: MenuTriggerFor property -->
+       <!-- [hasBackdrop]: MatMenu property -->
+      <!-- (mouseenter), (mouseleave): events -->
       <button mat-button [matMenuTriggerFor]="menMenu" #menuTrigger="matMenuTrigger" (mouseenter)="openMenu()">Homem</button>
       <mat-menu #menMenu="matMenu" [hasBackdrop]="false">
           <div class="menu-items" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
@@ -25,23 +30,54 @@
       <span>|</span>
       <button mat-button [matMenuTriggerFor]="womenMenu">Mulher</button>
       <mat-menu #womenMenu="matMenu">
+        <!-- reserved for women menu itens -->
       </mat-menu>
       <a routerLink="/home" routerLinkActive="activa" class="logo">
           <img src="logo.png" alt="Logo">
       </a>
       <button mat-button [matMenuTriggerFor]="childMenu">Criança</button>
       <mat-menu #childMenu="matMenu">
+        <!-- reserved for child menu itens -->
       </mat-menu>
       <span>|</span>
       <button mat-button [matMenuTriggerFor]="accessoriesMenu">Acessórios</button>
       <mat-menu #accessoriesMenu="matMenu">
+        <!-- reserved for accessories menu itens -->
       </mat-menu>
     </nav>
 
     <div class="user-actions">
+      <!-- Alternative Approaches:
+        @if (loggedUser$ | async; as user) {
+          <p id="welcomeMessage">Bem vindo(a), {{ user?.nome }}</p>
+          <button routerLink="/wishlist" routerLinkActive="activa" mat-icon-button aria-label="list_alt">
+            <mat-icon>list_alt</mat-icon>
+          </button>
+          <button routerLink="/listuser" routerLinkActive="activa" mat-icon-button aria-label="User">
+            <mat-icon>person</mat-icon>
+          </button>
+          <button routerLink="/cart" routerLinkActive="activa" mat-icon-button aria-label="shopping_cart">
+            <mat-icon>shopping_cart</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Logout" (click)="openLogoutModal()">
+            <mat-icon>logout</mat-icon>
+          </button>
+        } @else {
+          <button routerLink="/registration" routerLinkActive="activa" mat-icon-button aria-label="Person Add">
+          <mat-icon>person_add</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Login" (click)="openLoginModal()">
+            <mat-icon>login</mat-icon>
+          </button>
+        }
+      -->
+
+      <!-- if loggedUser$ is true, show ng-container, otherwise, show ng-template -->
+      <!-- (|): pipe operator, it takes a value on the left and applies a transformation function on the right. -->
       <ng-container *ngIf="loggedUser$ | async as user; else loggedOut">
         <p id="welcomeMessage">Bem vindo(a), {{ user?.nome }}</p>
         <button routerLink="/wishlist" routerLinkActive="activa" mat-icon-button aria-label="list_alt">
+          <!-- list_alt: Google fonts icon -->
           <mat-icon>list_alt</mat-icon>
         </button>
         <button routerLink="/listuser" routerLinkActive="activa" mat-icon-button aria-label="User">
