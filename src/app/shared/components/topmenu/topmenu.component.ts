@@ -25,7 +25,7 @@ import { LogoutmodalService } from '../../../core/services/logoutmodal.service';
 /* Defines the component class that will hold all the logic, export makes it available for import in other files */
 export class TopmenuComponent {
 
-  //#region Properties and decorators
+  //#region simple and decorators Properties
 
   /* gives access to a child element in the template; menuTrigger will reference a Material menu trigger element withim the html template; ! is the non-null assertion operator, telling TypeScript this will be initialized */
   @ViewChild('menuTrigger') menuTrigger!: MatMenuTrigger;
@@ -45,7 +45,7 @@ export class TopmenuComponent {
   //#endregion
 
   //#region Methods
-  
+
   /* Methods to control the menu's open/close state, Can be triggered by clicks or hover events, Uses the menuTrigger reference to control Material menu */
   openMenu() {
     this.menuTrigger.openMenu();
