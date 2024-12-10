@@ -59,7 +59,7 @@ export class TopmenuComponent {
     this.menuTrigger.closeMenu();
   }
 
-  /* Methods for handling user authentication; openLoginModal: Opens a login dialog; logout: Logs out the current user;openLogoutModal: Opens a logout confirmation dialog */
+  /* Methods for handling user authentication; openLoginModal: Opens a login dialog; logout: Logs out the current user; openLogoutModal: Opens a logout confirmation dialog */
   openLoginModal() {
     console.log('openLoginModal Button clicked');
     this.loginModalService.showModal();
