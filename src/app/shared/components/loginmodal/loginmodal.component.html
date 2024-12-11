@@ -1,24 +1,46 @@
+<!-- Main container that only shows when isVisible is true -->
+<!-- This is the outer wrapper for the modal -->
 <div *ngIf="isVisible">
+    <!-- Modal container with dynamic display style -->
+    <!-- Uses property binding to show/hide based on isVisible state -->
     <div class="modal" [style.display]="isVisible ? 'block' : 'none'">
+        <!-- Modal content container -->
+        <!-- Holds the actual form and its elements -->
         <div class="modal-content">
+            <!-- Login form connected to our reactive form modalForm -->
             <form [formGroup]="modalForm">
+                <!-- Close button in the top right -->
+                <!-- Triggers closeModal() method when clicked -->
                 <span id="closeButton" (click)="closeModal()">X</span>
+                 <!-- Modal title -->
                 <h4 id="loginHeader">Controlo de acessos</h4>
+                <!-- Email error message container -->
+                <!-- Shows validation messages for email field -->
                 <p id="emailMessage">
                     {{currentEmailMessage}}
                 </p>
+                <!-- Email input field group -->
                 <p id="email">
                     <label for="emailInput">E-mail:</label>
+                    <!-- Email input connected to form control -->
+                    <!-- Shows error message on blur event -->
                     <input type="email" formControlName="emailInput" placeholder="Email" (blur)="showErrorMessage('email')">
                 </p>
+                <!-- Password error message container -->
+                <!-- Shows validation messages for password field -->
                 <p id="passwordMessage">
                     {{currentPasswordMessage}}
                 </p>
+                <!-- Password input field group -->
                 <p id="password">
                     <label for="passwordInput">Senha:</label>
+                    <!-- Password input connected to form control -->
+                    <!-- Shows error message on blur event -->
                     <input type="password" formControlName="passwordInput" placeholder="Senha" (blur)="showErrorMessage('password')">
                 </p>
+                <!-- Submit button container -->
                 <p class="validation">
+                    <!-- Button triggers validateUser() method on click -->
                     <input type="button" id="validationButton" value="Validar" (click)="validateUser()">
                 </p>
             </form>
