@@ -47,3 +47,58 @@
         </div>
     </div>
 </div>
+
+<!-- Alternative Approaches:
+ 
+Using ng-template with ngTemplateOutlet:
+
+//Define the template 
+<ng-template #loginModal>
+    <div class="modal">
+        <div class="modal-content">
+            //Same form content as before 
+        </div>
+    </div>
+</ng-template>
+
+//Use the template conditionally 
+<div *ngTemplateOutlet="isVisible ? loginModal : null"></div>
+
+//With Angular Material 
+<mat-dialog>
+    <mat-dialog-content>
+        <form [formGroup]="modalForm">
+            //Form content 
+        </form>
+    </mat-dialog-content>
+</mat-dialog>
+
+//With NgBootstrap 
+<ngb-modal>
+    <div class="modal-header">
+        <h4>Controlo de acessos</h4>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="modalForm">
+            //Form content 
+        </form>
+    </div>
+</ngb-modal>
+
+//Using CSS to handle visibility instead of *ngIf:
+
+<div class="modal" [class.visible]="isVisible">
+    <div class="modal-content">
+        //Same form content 
+    </div>
+</div>
+
+//With corresponding CSS 
+.modal {
+    display: none;
+}
+.modal.visible {
+    display: block;
+}
+    
+-->

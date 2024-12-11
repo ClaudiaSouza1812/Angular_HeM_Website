@@ -47,14 +47,14 @@
     padding: 10px 0px 0px 5px;
     margin: 0;
 }
-#validationButton {
+.validationButton {
     color: white;
     background-color: #0d6efd;
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
 }
-#validationButton:hover {
+.validationButton:hover {
     background-color: gray;
 }
 #message {

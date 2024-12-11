@@ -1,5 +1,48 @@
+<!-- Main container div that only shows when isVisible is true -->
 <div *ngIf="isVisible">
+    <!-- Modal container with dynamic display style based on isVisible -->
     <div class="modal" [style.display]="isVisible ? 'block' : 'none'">
+        <!-- Modal content wrapper -->
+        <div class="modal-content">
+            <!-- Header section of the modal -->
+            <div id="header">
+                <!-- Modal title (Session Close in Portuguese) -->
+                <h4>Fecho de Sessão</h4>
+                <!-- Close button (X) that triggers closeModal() function -->
+                <span id="closeButton" (click)="closeModal()">X</span>
+            </div>
+
+            <!-- Message section -->
+            <div>
+                <!-- Confirmation message asking if user wants to end session -->
+                <p id="message">
+                    Quer terminar a sessão?
+                </p>
+            </div>
+
+            <!-- Validation/buttons section -->
+            <div id="validation">
+                <!-- "Yes" button paragraph -->
+                <p>
+                    <!-- Button that triggers logoutUser() function when clicked -->
+                    <input type="button" id="validationButton" value="Sim" (click)="logoutUser()">
+                </p>
+                <!-- "No" button paragraph -->
+                <p>
+                    <!-- Button that triggers closeModal() function when clicked -->
+                    <input type="button" id="validationButton" value="Não" (click)="closeModal()">
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alternative Approaches:
+ 
+Using ng-template with ngTemplateOutlet:
+
+<ng-template #logoutModal>
+    <div class="modal">
         <div class="modal-content">
             <div id="header">
                 <h4>Fecho de Sessão</h4>
@@ -20,4 +63,46 @@
             </div>
         </div>
     </div>
-</div>
+</ng-template>
+
+<div *ngTemplateOutlet="isVisible ? logoutModal : null"></div>
+
+Using @if directive:
+
+@if (isVisible) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Fecho de Sessão</h4>
+          <button 
+            class="close-button" 
+            (click)="closeModal()" 
+            aria-label="Close modal">
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <p class="modal-message">
+            Quer terminar a sessão?
+          </p>
+        </div>
+
+        <div class="modal-footer">
+          <button 
+            class="btn btn-secondary" 
+            (click)="closeModal()">
+            Não
+          </button>
+          <button 
+            class="btn btn-primary" 
+            (click)="logoutUser()">
+            Sim
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+-->
