@@ -1,30 +1,33 @@
 /* angular special selector that targets the component of which the styles belong, in this case, the index.html */
 :host {
-    text-align: center;
-    display: block; 
-    width: 100%; 
+    text-align: center;        /* Centers text content */
+    display: block;            /* Makes component behave as block element */
+    width: 100%;              /* Component takes full width */
 }
+
+/* Global body styles */
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%; 
-    font-family: "Open Sans", sans-serif;
-    display: flex;
-    justify-content: center;
+    margin: 0;                 /* Removes default margin */
+    padding: 0;               /* Removes default padding */
+    width: 100%;             /* Full viewport width */
+    font-family: "Open Sans", sans-serif;  /* Sets default font */
+    display: flex;           /* Makes body a flex container */
+    justify-content: center; /* Centers content horizontally */
 }
 
 /* all the styles bellow are indirectly styling <app-root> through inheritance: */
 /* redundant:  because of the flex-direction: column on the parent (app-root), flex items (header, main, footer) automatically stretch to the container's width - this is the default behavior of align-items: stretch in flex layout. */
 header, main, footer {
-    width: 100%;
+    width: 100%;             /* Full width - redundant due to flex stretch */
 }
+/* Main content area */
 main {
-    flex: 1;    /* Takes remaining vertical space between header and footer */
+    flex: 1;                 /* Fills available space between header/footer using flex-grow: 1 shorthand */                         
 }
 
 /* not using: it was at  <app-root> and i forgot to take it out */
 .content-container {
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 1400px;       /* Caps maximum width */
+    margin: 0 auto;          /* Centers container horizontally */
 }

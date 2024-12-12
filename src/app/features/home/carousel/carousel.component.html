@@ -1,8 +1,15 @@
+<!-- Carousel container wrapper -->
 <div class="carousel-container">
+  <!-- Fixed text overlay showing "saldos" -->
   <div class="fixed-carousel-text">saldos</div>
+  
+  <!-- Content container that moves slides horizontally -->
+  <!-- Uses dynamic transform based on currentIndex to shift slides -->
+   <!-- alternative using template literals: [style.transform]="`translateX(${-currentIndex * 100}%)`" -->
   <div class="carousel-content" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
-    <div class="carousel-slide" *ngFor="let image of images">
-      <img [src]="image.image" alt="Carousel image">
-    </div>
+      <!-- Creates a slide for each image in the images array -->
+      <div class="carousel-slide" *ngFor="let image of images">
+          <img [src]="image.image" alt="Carousel image">
+      </div>
   </div>
 </div>

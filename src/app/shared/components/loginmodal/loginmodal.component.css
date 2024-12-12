@@ -1,55 +1,69 @@
+/* Modal overlay - covers entire viewport */
 .modal {
-    position: fixed;
+    position: fixed;           /* Fixed positioning relative to viewport */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-}
-.modal-content {
-    background-color: white;
-    padding: 15px;
-    width: 350px;
-    max-width: 500px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-#closeButton {
-    position: absolute;
-    top: -14px;
-    right: -14px;
-    background-color: white;
-    line-height: 25px;
-    width: 30px;
-    text-align: center;
-    font-weight: bold;
-    border: 3px solid #666;
-    border-radius: 50%;
-    box-shadow: 3px 3px 5px #000;
-    user-select: none;
-}
-#email > input, #password > input {
-    width: 240px;
-}
-.validation{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 25px;
+    width: 100%;              /* Full viewport width */
+    height: 100%;             /* Full viewport height */
+    background-color: rgba(0,0,0,0.5);  /* Semi-transparent black overlay */
 }
 
+/* Modal content box */
+.modal-content {
+    background-color: white;   /* White background for content */
+    padding: 15px;
+    width: 350px;             /* Fixed width for the modal */
+    max-width: 500px;         /* Maximum width constraint */
+    position: absolute;        /* Absolute positioning for centering */
+    top: 50%;                 /* Center vertically */
+    left: 50%;               /* Center horizontally */
+    transform: translate(-50%, -50%);  /* Offset by half dimensions to truly center */
+}
+
+/* Close button styling */
+#closeButton {
+    position: absolute;       /* Positioned relative to modal-content */
+    top: -14px;              /* Positions button slightly outside modal */
+    right: -14px;
+    background-color: white;
+    line-height: 25px;       /* Centers text vertically */
+    width: 30px;             /* Makes button circular */
+    text-align: center;      /* Centers text horizontally */
+    font-weight: bold;
+    border: 3px solid #666;  /* Gray border */
+    border-radius: 50%;      /* Creates circular shape */
+    box-shadow: 3px 3px 5px #000;  /* Adds depth with shadow */
+    user-select: none;       /* Prevents text selection */
+}
+
+/* Input fields within email and password containers */
+#email > input, 
+#password > input {
+    width: 240px;           /* Fixed width for input fields */
+}
+
+/* Validation section container */
+.validation {
+    display: flex;          /* Uses flexbox layout */
+    justify-content: flex-end;  /* Aligns content to right */
+    align-items: center;    /* Centers items vertically */
+    padding-right: 25px;    /* Right padding for spacing */
+}
+
+/* Validation button styling */
 #validationButton {
     color: white;
-    background-color: #0d6efd;
+    background-color: #0d6efd;  /* Bootstrap primary blue */
     border: none;
-    border-radius: 5px;
+    border-radius: 5px;        /* Rounded corners */
     padding: 5px 10px;
 }
-#emailMessage, #passwordMessage {
-    color: red;
-    font-size: small;
-    margin: 0;
-    padding: 0;
+
+/* Error message styling for email and password */
+#emailMessage, 
+#passwordMessage {
+    color: red;              /* Red text for errors */
+    font-size: small;        /* Smaller font size */
+    margin: 0;              /* Removes margin */
+    padding: 0;             /* Removes padding */
 }

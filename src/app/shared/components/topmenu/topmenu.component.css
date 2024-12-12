@@ -1,72 +1,90 @@
+/* Toolbar row layout - uses CSS Grid with 3 equal columns */
 .mat-toolbar-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: 
-    "a b c";
-    align-items: center;
+    grid-template-columns: repeat(3, 1fr);    /* Creates 3 equal columns */
+    grid-template-areas:                      /* Names areas for grid placement */
+    "a b c";                                  /* Left content | Nav | Right content */
+    align-items: center;                      /* Centers items vertically */
     padding: 0;
 }
+
+/* Navigation styling */
 nav {
-    grid-area: b;
+    grid-area: b;                            /* Places nav in middle column */
     list-style: none;
     margin: 0;
     padding-top: 10px;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    display: grid;                           /* Nested grid for nav items */
+    grid-template-columns: repeat(7, 1fr);   /* 7 equal columns for nav items */
     align-items: center;
-    width: min-content;
-    justify-self: center;
+    width: min-content;                      /* Shrinks to content width */
+    justify-self: center;                    /* Centers nav in its grid area */
 }
+
+/* Button styling */
 button {
-    width: max-content;
+    width: max-content;                      /* Expands to content width */
 }
+
+/* Image styling */
 img {
-    max-width: 100%;
-    min-width: 50px;
-    height: auto;
+    max-width: 100%;                         /* Responsive image sizing */
+    min-width: 50px;                         /* Minimum width constraint */
+    height: auto;                            /* Maintains aspect ratio */
 }
+
+/* Right section container */
 div {
-    grid-area: c;
+    grid-area: c;                            /* Places div in right column */
     display: flex;
-    justify-self: end;
+    justify-self: end;                       /* Aligns to right of grid area */
 }
+
+/* Menu items container */
 .menu-items {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;                  /* Stacks items vertically */
 }
+
+/* Welcome message styling */
 #welcomeMessage {
     margin: 0;
     padding: 0;
     font-size: small;
-    align-self: center;
+    align-self: center;                      /* Centers in flex container */
 }
+
+/* Mobile responsive styles */
 @media (max-width: 480px) {
+    /* Hides welcome message on mobile */
     #welcomeMessage {
         display: none;
     }
+    
+    /* Adjusts toolbar padding for mobile */
     .mat-toolbar {
         padding-bottom: 30px;
     }
+    
+    /* Reorganizes toolbar layout for mobile */
     .mat-toolbar-row {
         display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(2, 1fr);  
-        grid-template-areas: 
-        'a'
-        'b';
+        grid-template-columns: 1fr;          /* Single column layout */
+        grid-template-rows: repeat(2, 1fr);  /* Two rows */
+        grid-template-areas:                 /* Redefines grid areas */
+        'a'                                  /* Nav on top */
+        'b';                                 /* Right content below */
         padding: 0;
+
+        /* Repositions nav for mobile */
         nav {
-            grid-area: a;
+            grid-area: a;                    /* Moves nav to top */
         }
+
+        /* Repositions right content for mobile */
         div {
-            grid-area: b;
-            justify-self: center;
+            grid-area: b;                    /* Moves div below */
+            justify-self: center;            /* Centers in mobile view */
         }
     }
 }
-
-
-
-
-
-
