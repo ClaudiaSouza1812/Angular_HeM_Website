@@ -1,3 +1,4 @@
+// Import necessary modules and interfaces from Angular and Material
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,38 +8,44 @@ import { Observable } from 'rxjs';
 import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-listproduct',
-  standalone: true,
-  imports: [CommonModule, MatIconModule, RouterModule],
-  templateUrl: './listproduct.component.html',
-  styleUrl: './listproduct.component.css'
+ selector: 'app-listproduct',              // Component's HTML selector tag
+ standalone: true,                         // Marks as standalone component
+ imports: [CommonModule, MatIconModule, RouterModule],  // Required imports
+ templateUrl: './listproduct.component.html',
+ styleUrl: './listproduct.component.css'
 })
 export class ListproductComponent {
+ // Input properties receiving data from parent component
+ @Input() products: IProduct[] = [];           // Array of products to display
+ @Input() currentUser$!: Observable<IUser | null>;  // Current user observable
+ @Input() starredProducts!: Set<number>;      // Set of products marked as favorites
 
-  @Input() products: IProduct[] = [];
-  @Input() currentUser$!: Observable<IUser | null>;
-  @Input() starredProducts!: Set<number>;
-  @Output() toggleWishlist = new EventEmitter<number>();
-  
-  productsToShow: number = 6;
-  imageId: number | null = null;
+ // Output event emitter to notify parent of wishlist changes
+ @Output() toggleWishlist = new EventEmitter<number>();
 
-  constructor() {}
+ // Component properties
+ productsToShow: number = 6;                  // Initial number of products to display
+ imageId: number | null = null;               // Tracks which product image is being hovered
 
-  handleWishList(productId: number) {
-    this.toggleWishlist.emit(productId);
-  }
+ constructor() {}
 
-  isProductStarred(productId: number): boolean {
-    return this.starredProducts.has(productId);
-  }
+ // Emit event when wishlist toggle is clicked
+ handleWishList(productId: number) {
+   this.toggleWishlist.emit(productId);
+ }
 
-  showProducts(): number {
-    return this.productsToShow += 6;
-  }
+ // Check if a product is in the wishlist
+ isProductStarred(productId: number): boolean {
+   return this.starredProducts.has(productId);
+ }
 
-  hasProduct(): boolean {
-    return this.productsToShow < this.products.length || false;
-  }
+ // Increase number of products shown when "Show More" is clicked
+ showProducts(): number {
+   return this.productsToShow += 6;           // Increases display count by 6
+ }
 
+ // Check if there are more products to show
+ hasProduct(): boolean {
+   return this.productsToShow < this.products.length || false;
+ }
 }
