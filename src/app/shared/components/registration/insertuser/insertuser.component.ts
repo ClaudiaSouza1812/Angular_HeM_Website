@@ -1,3 +1,4 @@
+// Import necessary Angular and Material modules
 import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,25 +18,29 @@ import { UserService } from '../../../../core/services/user.service';
   styleUrl: './insertuser.component.css'
 })
 export class InsertuserComponent {
-
+  // Output event emitter for new user data
   @Output() newUser = new EventEmitter<IUser>;
 
+  // Signals for error messages
   nomeErrorMessage = signal('');
   moradaErrorMessage = signal('');
   emailErrorMessage = signal('');
   postalErrorMessage = signal('');
   senhaErrorMessage = signal('');
 
+  // Signal for input value
   protected readonly value = signal('');
-  
 
+  // Handle input changes
   protected onInput(event: Event) {
     const input = event.target as HTMLInputElement;
     this.value.set(input.value);
   }
 
+  // Form group declaration
   userForm: FormGroup;
 
+  // Initialize form with validators
   constructor(fb: FormBuilder, private userService: UserService) {
     this.userForm = fb.group({
       nome: ['', Validators.required],
@@ -44,16 +49,18 @@ export class InsertuserComponent {
       codigoPostal: ['', [Validators.required, Validators.pattern('^[0-9]{4}-[0-9]{3}$')]],
       senha: ['', [
         Validators.required, 
+        // Password must have uppercase, lowercase, number, special char, and min 8 chars
         Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@$!%*?&]).{8,}$')
       ]],
       pais: ['portugal', Validators.required]
     });
   }
 
-  
+  // Update error messages based on validation state
   updateErrorMessage(item: AbstractControl | null, fieldName: string) {
     if (!item) return;
     
+    // Select appropriate error signal based on field name
     let errorSignal: ReturnType<typeof signal<string>>;
     
     switch (fieldName) {
@@ -76,6 +83,7 @@ export class InsertuserComponent {
         return;
     }
 
+    // Set appropriate error message based on validation error
     if (item.hasError('required')) {
       errorSignal.set(`${fieldName} é obrigatório`);
     } else if (item.hasError('email')) {
@@ -96,7 +104,9 @@ export class InsertuserComponent {
     }
   }
 
+  // Handle user insertion
   async insertUser() {
+    // Check form validity
     if (this.userForm.invalid) {
       alert("O formulário é inválido");
       return;
@@ -105,6 +115,7 @@ export class InsertuserComponent {
     const email = this.userForm.get('email')?.value;
     
     try {
+      // Check if email already exists
       const emailExists = await firstValueFrom(this.userService.checkIfEmailExists(email));
       
       if (emailExists) {
@@ -112,6 +123,7 @@ export class InsertuserComponent {
         return;
       }
       
+      // Emit new user data and reset form
       this.newUser.emit(this.userForm.value);
       this.userForm.reset();
     } catch (error) {
@@ -119,5 +131,4 @@ export class InsertuserComponent {
       alert('Erro ao verificar email');
     }
   }
-
 }

@@ -1,15 +1,19 @@
+/* Main container for registration form */
 .registration-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+    display: flex;              /* Uses flexbox layout */
+    flex-direction: column;     /* Stacks elements vertically */
+    align-items: center;        /* Centers elements horizontally */
 }
+
+/* Material form field styling */
 mat-form-field {
-    width: 300px; 
+    width: 300px;             /* Fixed width for all form fields */
 }
+
+/* Submit button styling */
 .add-user-btn {
-    background-color: red;
-    color: white;
-    border: none;
-    margin-top: 30px;
+    background-color: red;     /* Red background color */
+    color: white;             /* White text */
+    border: none;             /* Removes default border */
+    margin-top: 30px;         /* Space above button */
 }

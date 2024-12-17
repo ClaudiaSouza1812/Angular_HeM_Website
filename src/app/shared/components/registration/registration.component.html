@@ -1,6 +1,16 @@
+<!-- Main heading for User Registration section -->
 <h2>Registo de Utilizador</h2>
-<app-insertuser (newUser)="insertNewUser($event)"></app-insertuser>
+
+<!-- User registration form component -->
+<!-- Listens for newUser event and calls insertNewUser when a new user is submitted -->
+<app-insertuser 
+    (newUser)="insertNewUser($event)">
+</app-insertuser>
+
+<!-- Modal component for registration feedback/notifications -->
 <app-registrationmodal></app-registrationmodal>
+
+<!-- Component to display list of registered users -->
 <app-listuser></app-listuser>
 
 

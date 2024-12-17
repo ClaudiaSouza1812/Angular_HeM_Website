@@ -1,41 +1,46 @@
+<!-- Main container with reactive form binding -->
 <div class="registration-container" [formGroup]="userForm">
+  <!-- Name field -->
   <mat-form-field>
-      <mat-label>Insira seu Nome</mat-label>
+      <mat-label>Insira seu Nome</mat-label>  <!-- "Enter your Name" -->
       <input 
-        matInput 
-        placeholder="Nome Sobrenome" 
-        formControlName="nome"
-        (blur)="updateErrorMessage(userForm.get('nome'), 'Nome')"
-        required 
+          matInput 
+          placeholder="Nome Sobrenome"        
+          formControlName="nome"              
+          (blur)="updateErrorMessage(userForm.get('nome'), 'Nome')"  
+          required 
       />
+      <!-- Shows error if field is touched and invalid -->
       @if (userForm.get('nome')?.touched && userForm.get('nome')?.invalid) {
-        <mat-error>{{nomeErrorMessage()}}</mat-error>
+          <mat-error>{{nomeErrorMessage()}}</mat-error>
       }
   </mat-form-field>
 
+  <!-- Address field -->
   <mat-form-field>
-      <mat-label>Insira a Morada</mat-label>
+      <mat-label>Insira a Morada</mat-label>  <!-- "Enter Address" -->
       <input 
-        matInput 
-        placeholder="Praceta, 123" 
-        formControlName="morada"
-        (blur)="updateErrorMessage(userForm.get('morada'), 'Morada')"
-        required 
+          matInput 
+          placeholder="Praceta, 123"         
+          formControlName="morada"
+          (blur)="updateErrorMessage(userForm.get('morada'), 'Morada')"
+          required 
       />
       @if (userForm.get('morada')?.touched && userForm.get('morada')?.invalid) {
-        <mat-error>{{moradaErrorMessage()}}</mat-error>
+          <mat-error>{{moradaErrorMessage()}}</mat-error>
       }
   </mat-form-field>
 
+  <!-- Postal code field with character limit -->
   <mat-form-field hintLabel="Max 8 characters" class="form-field">
-      <mat-label>Insira Código Postal</mat-label>
+      <mat-label>Insira Código Postal</mat-label>  <!-- "Enter Postal Code" -->
       <input
-        matInput
-        #postalInput
-        placeholder="0000-000"
-        formControlName="codigoPostal"
-        (blur)="updateErrorMessage(userForm.get('codigoPostal'), 'Código Postal')"
-        required
+          matInput
+          #postalInput                       
+          placeholder="0000-000"
+          formControlName="codigoPostal"
+          (blur)="updateErrorMessage(userForm.get('codigoPostal'), 'Código Postal')"
+          required
       />
       @if (userForm.get('codigoPostal')?.touched && userForm.get('codigoPostal')?.invalid) {
           <mat-error>{{postalErrorMessage()}}</mat-error>
@@ -43,46 +48,56 @@
       <mat-hint align="end">{{postalInput.value.length || 0}}/8</mat-hint>
   </mat-form-field>
 
+  <!-- Country selection dropdown -->
   <mat-form-field>
-      <mat-label>Selecione o País</mat-label>
+      <mat-label>Selecione o País</mat-label>  <!-- "Select Country" -->
       <mat-select formControlName="pais">
-        <mat-option value="portugal">Portugal</mat-option>
+          <mat-option value="portugal">Portugal</mat-option>
       </mat-select>
   </mat-form-field>
-  
+
+  <!-- Email field -->
   <mat-form-field class="form-field">
-      <mat-label>Insira seu E-mail</mat-label>
+      <mat-label>Insira seu E-mail</mat-label>  <!-- "Enter your Email" -->
       <input
-        matInput
-        formControlName="email"
-        placeholder="pat@example.com"
-        (blur)="updateErrorMessage(userForm.get('email'), 'Email')"
-        required
+          matInput
+          formControlName="email"
+          placeholder="pat@example.com"
+          (blur)="updateErrorMessage(userForm.get('email'), 'Email')"
+          required
       />
       @if (userForm.get('email')?.touched && userForm.get('email')?.invalid) {
-        <mat-error>{{emailErrorMessage()}}</mat-error>
+          <mat-error>{{emailErrorMessage()}}</mat-error>
       }
   </mat-form-field>
 
+  <!-- Password field with requirements hint -->
   <mat-form-field class="form-field">
-      <mat-label>Defina sua senha</mat-label>
+      <mat-label>Defina sua senha</mat-label>  <!-- "Set your password" -->
       <input
-        matInput
-        type="password"
-        formControlName="senha"
-        placeholder="********"
-        (blur)="updateErrorMessage(userForm.get('senha'), 'Senha')"
-        required
+          matInput
+          type="password"
+          formControlName="senha"
+          placeholder="********"
+          (blur)="updateErrorMessage(userForm.get('senha'), 'Senha')"
+          required
       />
       @if (userForm.get('senha')?.touched && userForm.get('senha')?.invalid) {
-        <mat-error>{{senhaErrorMessage()}}</mat-error>
+          <mat-error>{{senhaErrorMessage()}}</mat-error>
       }
       <mat-hint>
-        A senha deve conter pelo menos 8 caracteres, incluindo maiúscula, minúscula, número e símbolo.
+          A senha deve conter pelo menos 8 caracteres, incluindo maiúscula, minúscula, número e símbolo.
+          <!-- Password requirements hint -->
       </mat-hint>
   </mat-form-field>
 
-  <button class="add-user-btn" mat-raised-button (click)="insertUser()" [disabled]="userForm.invalid">
-      Inserir Usuário
+  <!-- Submit button - disabled when form is invalid -->
+  <button 
+      class="add-user-btn" 
+      mat-raised-button 
+      (click)="insertUser()" 
+      [disabled]="userForm.invalid"
+  >
+      Inserir Usuário  <!-- "Insert User" -->
   </button>
 </div>
