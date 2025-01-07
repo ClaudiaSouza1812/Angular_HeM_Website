@@ -1,19 +1,43 @@
+<!-- Main container for user profile - only shows when user data is available -->
 <div class="user-info" *ngIf="currentUser$ | async as user">
+    <!-- Header section -->
     <div class="header">
-        <h3>Perfil</h3>
+        <h3>Perfil</h3>    <!-- "Profile" in Portuguese -->
     </div>
     
+    <!-- User information section -->
     <div class="user-details">
-        <p><strong>Nome:</strong> {{user.nome}}</p>
-        <p><strong>Email:</strong> {{user.email}}</p>
-        <p><strong>Senha:</strong> ********</p>
-        <p><strong>Morada:</strong> {{user.morada}}</p>
-        <p><strong>Código Postal:</strong> {{user.codigoPostal}}</p>
-        <p><strong>País:</strong> {{user.pais}}</p>
+        <!-- Each line shows a user detail with label and value -->
+        <p>
+            <strong>Nome:</strong>     <!-- "Name" in Portuguese -->
+            {{user.nome}}
+        </p>
+        <p>
+            <strong>Email:</strong>
+            {{user.email}}
+        </p>
+        <p>
+            <strong>Senha:</strong>     <!-- "Password" in Portuguese -->
+            ********                    <!-- Masked password for security -->
+        </p>
+        <p>
+            <strong>Morada:</strong>    <!-- "Address" in Portuguese -->
+            {{user.morada}}
+        </p>
+        <p>
+            <strong>Código Postal:</strong>    <!-- "Postal Code" in Portuguese -->
+            {{user.codigoPostal}}
+        </p>
+        <p>
+            <strong>País:</strong>      <!-- "Country" in Portuguese -->
+            {{user.pais}}
+        </p>
     </div>
+
+    <!-- Button section -->
     <div class="button-container">
         <button class="change-btn">
-            Alterar Informações
+            Alterar Informações         <!-- "Change Information" in Portuguese -->
         </button>
     </div>
 </div>

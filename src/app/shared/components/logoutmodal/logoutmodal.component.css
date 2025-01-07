@@ -1,65 +1,83 @@
+/* Main modal container - covers entire screen */
 .modal {
-    position: fixed;
+    position: fixed;           /* Fixed position relative to viewport */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    width: 100%;              /* Full width of viewport */
+    height: 100%;             /* Full height of viewport */
+    background-color: rgba(0,0,0,0.5);  /* Semi-transparent black overlay */
 }
+
+/* Modal content container - the white box in the center */
 .modal-content {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    display: grid;            /* Uses CSS Grid layout */
+    grid-template-rows: repeat(3, 1fr);  /* Creates 3 equal rows */
     background-color: white;
     padding: 15px;
-    width: 500px;
-    max-width: 500px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    align-items: center;
+    width: 500px;            /* Fixed width */
+    max-width: 500px;        /* Ensures it doesn't exceed 500px */
+    position: absolute;      /* Positioned relative to modal container */
+    top: 50%;               /* Center vertically */
+    left: 50%;              /* Center horizontally */
+    transform: translate(-50%, -50%);  /* Offset by half its dimensions to truly center */
+    align-items: center;    /* Centers items vertically within grid cells */
 }
+
+/* Header section styling */
 #header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex;          /* Flexbox layout */
+    justify-content: space-between;  /* Spreads items to ends */
+    align-items: center;    /* Centers items vertically */
     padding-bottom: 10px;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;  /* Light gray bottom border */
 }
+
+/* Header title styling */
 #header h4 {
     font-size: 15px;
     padding: 0;
-    margin: 0;
+    margin: 0;            /* Removes default margin */
 }
+
+/* Close button styling */
 #closeButton {
     text-align: center;
     padding: 0;
-    cursor: pointer;
+    cursor: pointer;     /* Shows hand cursor on hover */
 }
 
+/* Validation section (buttons container) */
 #validation {
-    display: flex;
-    justify-content: right;
-    align-items: center;
+    display: flex;         /* Flexbox layout */
+    justify-content: right;  /* Aligns items to right */
+    align-items: center;   /* Centers items vertically */
 }
+
+/* Spacing for validation buttons */
 #validation p {
     display: flex;
-    padding: 10px 0px 0px 5px;
+    padding: 10px 0px 0px 5px;  /* Top and left padding */
     margin: 0;
 }
-#validationButton {
+
+/* Validation button styling */
+.validationButton {
     color: white;
-    background-color: #0d6efd;
+    background-color: #0d6efd;  /* Bootstrap primary blue */
     border: none;
-    border-radius: 5px;
+    border-radius: 5px;        /* Rounded corners */
     padding: 5px 10px;
 }
-#validationButton:hover {
-    background-color: gray;
+
+/* Validation button hover effect */
+.validationButton:hover {
+    background-color: gray;   /* Changes to gray on hover */
 }
+
+/* Message text styling */
 #message {
     font-size: small;
-    padding: 10px 0px 15px 0px;
+    padding: 10px 0px 15px 0px;  /* Top and bottom padding */
     margin: 0;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;  /* Light gray bottom border */
 }

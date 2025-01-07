@@ -1,7 +1,9 @@
+/* Special selector for the component's host element */
 :host {
-    text-align: center;
+    text-align: center;    /* Centers all text content within the component */
     
+    /* Styles for h2 elements within the host component */
     h2 {
-        padding-bottom: 25px;
+        padding-bottom: 25px;    /* Adds space below the heading */
     }
 }

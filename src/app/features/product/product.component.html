@@ -1,2 +1,15 @@
+<!-- Filter component -->
+<!-- Listens for filter changes and calls loadFilteredProducts when filters change -->
 <app-filterproduct (filtersChanged)="loadFilteredProducts($event)"></app-filterproduct>
+<!-- Product list component -->
+<!-- Displays products with user-specific features -->
 <app-listproduct [products]="products" [currentUser$]="currentUser$" [starredProducts]="starredProducts" (toggleWishlist)="handleWishList($event)"></app-listproduct>
+
+<!-- 
+
+    [products]="products"                       Passes products array to child component 
+    [currentUser$]="currentUser$"               Passes current user observable 
+    [starredProducts]="starredProducts"         Passes set of favorited products
+    (toggleWishlist)="handleWishList($event)"   Listens for wishlist toggle events 
+
+-->

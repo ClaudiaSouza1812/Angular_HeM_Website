@@ -1,78 +1,97 @@
+/* Center align the wishlist title */
 .wishlist-header {
   text-align: center; 
-}
-.wishlist-container {
+ }
+ 
+ /* Main container layout using grid */
+ .wishlist-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-areas: 'a b c';
-}
-
-.wishlist-grid {
-  grid-area: b;
-  display: grid;
-  gap: 1.5rem;
-  width: 650px;
-  text-align: center; 
-
+  grid-template-columns: repeat(3, 1fr);   /* Creates three equal columns */
+  grid-template-areas: 'a b c';            /* Defines grid areas */
+ }
+ 
+ /* Wishlist grid styling */
+ .wishlist-grid {
+  grid-area: b;                            /* Places grid in center column */
+  display: grid;                           /* Creates grid for items */
+  gap: 1.5rem;                            /* Space between items */
+  width: 650px;                           /* Fixed width for grid */
+  text-align: center;                     /* Centers content */
+ 
+  /* Individual wishlist item styling */
   .wishlist-item {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: 'a b c';
-    align-items: center;
-    gap: 30px;
-
+    display: grid;                        /* Grid layout for item */
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    grid-template-areas: 'a b c';         /* Defines item layout areas */
+    align-items: center;                  /* Centers items vertically */
+    gap: 30px;                           /* Space between item sections */
+ 
+    /* Product image styling */
     img {
-      width: 100%;
+      width: 100%;                       /* Full width of container */
     }
+ 
+    /* Price text styling */
     .product-price {
-      font-size: 2rem;
+      font-size: 2rem;                   /* Large font for price */
     }
+ 
+    /* Button container styling */
     .buttons {
-      display: grid;
-      gap: 20px;
-      width: 150px;
+      display: grid;                     /* Grid for buttons */
+      gap: 20px;                        /* Space between buttons */
+      width: 150px;                     /* Fixed width for buttons */
     }
+ 
+    /* Button styling */
     .remove-btn, .add-btn {
-      background-color: red;
-      color: white;
-      border: none;
+      background-color: red;            /* Red background */
+      color: white;                     /* White text */
+      border: none;                     /* No border */
     }
+ 
+    /* Add to cart button text spacing */
     .add-btn p {
-      margin-bottom: 5px;
+      margin-bottom: 5px;               /* Space below text */
     }
+ 
+    /* Shopping cart icon sizing */
     .cart {
-      width: 20px;
+      width: 20px;                      /* Fixed width for icon */
     }
   }
-}
-.empty-wishlist {
-  grid-area: b;
-  justify-self: center;
-  display: flex;
-  flex-direction: column;
-}
-.button {
-  grid-area: b;
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px;
-  
-}
-
-@media (max-width: 480px) {
+ }
+ 
+ /* Empty wishlist message styling */
+ .empty-wishlist {
+  grid-area: b;                         /* Places in center column */
+  justify-self: center;                 /* Centers horizontally */
+  display: flex;                        /* Uses flexbox */
+  flex-direction: column;               /* Stacks items vertically */
+ }
+ 
+ /* Continue shopping button styling */
+ .button {
+  grid-area: b;                         /* Places in center column */
+  background-color: black;              /* Black background */
+  color: white;                         /* White text */
+  border: none;                         /* No border */
+  padding: 10px;                        /* Internal spacing */
+ }
+ 
+ /* Mobile responsive styles */
+ @media (max-width: 480px) {
   .wishlist-grid {
-    width: 100%; 
-    justify-self: center;              
+    width: 100%;                        /* Full width on mobile */
+    justify-self: center;               /* Centers grid */
     
     .wishlist-item {
-      grid-template-columns: 1fr;  
-      grid-template-areas: 
+      grid-template-columns: 1fr;       /* Single column layout */
+      grid-template-areas:              /* Stacks content vertically */
         'a'
         'b'
         'c';
-      gap: 0px;  
+      gap: 0px;                        /* Removes gap */
     }
   }
-}
-
+ }

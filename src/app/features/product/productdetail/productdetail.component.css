@@ -1,43 +1,64 @@
+/* Host element (component) layout */
 :host {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: 'a b c';
+    display: grid;                        /* Makes component a grid container */
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+    grid-template-areas: 'a b c';         /* Defines named grid areas */
 }
-section {
-    display: grid;
-    grid-area: b;
-}
-.grid-container {
-    grid-area: b;
-    display: grid;
-    grid-template-rows: 1fr;
-    justify-items: center;
-    text-align: center;
 
+/* Section element layout */
+section {
+    display: grid;                        /* Makes section a grid container */
+    grid-area: b;                         /* Places section in middle column */
+}
+
+/* Main content container layout */
+.grid-container {
+    grid-area: b;                         /* Places container in middle column */
+    display: grid;                        /* Makes container a grid */
+    grid-template-rows: 1fr;              /* Single row taking full height */
+    justify-items: center;                /* Centers items horizontally */
+    text-align: center;                   /* Centers text content */
+
+    /* Brand name styling */
     .brand {
-        font-weight: bold;
-        font-size: 2rem;
+        font-weight: bold;                /* Makes brand name bold */
+        font-size: 2rem;                  /* Large font size for brand */
     }
+
+    /* Product name styling */
     .name {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
+        font-size: 1.5rem;                /* Medium-large font for product name */
+        margin-bottom: 20px;              /* Space below name */
     }
+
+    /* Product images layout */
     .images-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 100px;
+        display: grid;                    /* Grid for images */
+        grid-template-columns: repeat(2, 1fr); /* Two equal columns for images */
+        gap: 100px;                       /* Space between images */
+
+        /* Responsive layout for mobile devices */
+        @media (max-width: 480px) {
+            grid-template-columns: 1fr;    /* Single column on small screens */
+        }
     }
+
+    /* Type and color information styling */
     .type-collor-container {
-        margin-top: 20px;
+        margin-top: 20px;                 /* Space above type/color info */
     }
+
+    /* Price styling */
     .price {
-        font-size: 1.5rem;
+        font-size: 1.5rem;                /* Larger font for price */
     }
+
+    /* Add to cart button styling */
     .cart-btn {
-        margin-top: 15px;
-        padding: 5px 10px;
-        background-color: red;
-        color: white;
-        border: none;
+        margin-top: 15px;                 /* Space above button */
+        padding: 5px 10px;                /* Internal button padding */
+        background-color: red;            /* Red background */
+        color: white;                     /* White text */
+        border: none;                     /* Removes default border */
     }
 }

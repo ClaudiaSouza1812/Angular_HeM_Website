@@ -1,13 +1,20 @@
+/* Host element (component) layout using CSS Grid */
 :host {
-    display: grid;
-    grid-template-columns: 36% 1fr;
-    grid-template-areas: "a b";
-    gap: 20px;
-}
-app-filterproduct {
-    grid-area: a;
-}
-app-listproduct {
-    grid-area: b;
-}
+    display: grid;                        /* Makes component a grid container */
+    grid-template-columns: 36% 1fr;       /* First column 36%, second takes remaining space */
+    grid-template-areas: "a b";           /* Defines two named grid areas */
+    gap: 20px;                           /* Adds 20px spacing between grid items */
+ }
+ 
+ /* Places filter component in the first grid area */
+ app-filterproduct {
+    grid-area: a;                        /* Places in left column (area "a") */
+ }
+ 
+ /* Places product list component in the second grid area */
+ app-listproduct {
+    grid-area: b;                        /* Places in right column (area "b") */ 
+ }
+
+
 

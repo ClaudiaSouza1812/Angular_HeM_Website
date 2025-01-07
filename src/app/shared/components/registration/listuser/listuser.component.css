@@ -1,70 +1,76 @@
+/* Main container for user info */
 .user-info {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 600px;             /* Limits width for better readability */
+    margin: 0 auto;               /* Centers the container horizontally */
+    padding: 20px;                /* Adds space inside container */
 
+    /* Header section styling */
     .header {
-        text-align: center;
-        margin-bottom: 20px;
+        text-align: center;       /* Centers header text */
+        margin-bottom: 20px;      /* Space below header */
         
         h3 {
-            font-weight: bold;
+            font-weight: bold;    /* Makes heading text bold */
         }
     }
 
+    /* User details section */
     .user-details {
-        margin-bottom: 20px;
+        margin-bottom: 20px;      /* Space below details section */
     }
 
+    /* Container for action buttons */
     .button-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 20px;
+        display: flex;            /* Uses flexbox for button layout */
+        justify-content: center;  /* Centers buttons horizontally */
+        gap: 10px;               /* Space between buttons */
+        margin-top: 20px;        /* Space above button container */
     }
 
+    /* Primary button styles (change and save buttons) */
     .change-btn, .save-btn {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-
+        background-color: #007bff;  /* Bootstrap primary blue */
+        color: white;               /* White text */
+        border: none;               /* Removes border */
+        padding: 10px 20px;         /* Button spacing */
+        border-radius: 4px;         /* Rounded corners */
+        cursor: pointer;            /* Hand cursor on hover */
     }
 
+    /* Secondary button style (cancel button) */
     .cancel-btn {
-        background-color: #6c757d;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-
+        background-color: #6c757d;  /* Bootstrap secondary gray */
+        color: white;               /* White text */
+        border: none;               /* Removes border */
+        padding: 10px 20px;         /* Button spacing */
+        border-radius: 4px;         /* Rounded corners */
+        cursor: pointer;            /* Hand cursor on hover */
     }
 
+    /* Edit form styling */
     .edit-form {
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 15px;    /* Space between form groups */
 
             label {
-                display: block;
-                margin-bottom: 5px;
-                font-weight: 500;
+                display: block;           /* Places label above input */
+                margin-bottom: 5px;       /* Space below label */
+                font-weight: 500;         /* Semi-bold font */
             }
 
             input {
-                width: 100%;
-                padding: 8px;
-                border: 1px solid #ced4da;
-                border-radius: 4px;
+                width: 100%;              /* Full width inputs */
+                padding: 8px;             /* Input spacing */
+                border: 1px solid #ced4da; /* Bootstrap border color */
+                border-radius: 4px;        /* Rounded corners */
             }
 
+            /* Error message styling */
             .text-danger {
-                color: #dc3545;
-                font-size: 0.875rem;
-                margin-top: 5px;
-                display: block;
+                color: #dc3545;           /* Bootstrap danger red */
+                font-size: 0.875rem;       /* Smaller font size */
+                margin-top: 5px;           /* Space above error message */
+                display: block;            /* Places on new line */
             }
         }
     }

@@ -1,8 +1,25 @@
+<!-- Main container section for highlighted products -->
 <section class="highlights-container">
+    <!-- Section title in Portuguese (destaques = highlights) -->
     <h3>destaques</h3>
+
+    <!-- Grid container for product cards -->
     <div class="products-grid">
+        <!-- Product card template that repeats for each product in highlightedProducts array -->
         <div class="product-card" *ngFor="let product of highlightedProducts">
-            <a [routerLink]="['/productdetail', product.id]" routerLinkActive="activa"><img [src]="product.foto_principal" alt="product.nome"></a>
+            <!-- 
+                Link to product detail page:
+                - [routerLink] creates dynamic route with product ID
+                - routerLinkActive adds 'activa' class when route is active 
+            -->
+            <a [routerLink]="['/productdetail', product.id]" routerLinkActive="activa">
+                <!-- 
+                    Product image:
+                    - [src] binds to product's main photo
+                    - alt text uses product name for accessibility
+                -->
+                <img [src]="product.foto_principal" alt="product.nome">
+            </a>
         </div>
     </div>
 </section>

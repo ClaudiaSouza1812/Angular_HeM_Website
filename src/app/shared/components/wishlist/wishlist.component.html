@@ -1,32 +1,50 @@
-<h1 class="wishlist-header">Lista de Desejos</h1>
+<!-- Wishlist page header -->
+<h1 class="wishlist-header">Lista de Desejos</h1>  <!-- "Wishlist" in Portuguese -->
+
+<!-- Main container for wishlist content -->
 <div class="wishlist-container">
-  <div class="wishlist-grid" *ngIf="wishlistProducts.length > 0; else emptyWishlist">
+    <!-- Grid of wishlist items - shows only if there are items -->
+    <div class="wishlist-grid" *ngIf="wishlistProducts.length > 0; else emptyWishlist">
+        <!-- Repeats for each product in wishlist -->
+        <div *ngFor="let product of wishlistProducts" class="wishlist-item">
+            <!-- Product image section -->
+            <div class="product-image">
+                <img [src]="product.foto_principal" [alt]="product.nome">
+            </div>
+            
+            <!-- Product details section -->
+            <div class="product-info">
+                <h3>{{ product.marca }}</h3>         <!-- Brand -->
+                <p class="product-name">{{ product.nome }}</p>    <!-- Product name -->
+                <p class="product-price">{{ product.preco }}€</p> <!-- Price with euro symbol -->
+            </div>
 
-      <div *ngFor="let product of wishlistProducts" class="wishlist-item">
-          <div class="product-image">
-          <img [src]="product.foto_principal" [alt]="product.nome">
-          </div>
-          
-          <div class="product-info">
-          <h3>{{ product.marca }}</h3>
-          <p class="product-name">{{ product.nome }}</p>
-          <p class="product-price">{{ product.preco }}€</p>
-          </div>
-          <div class="buttons">
-            <button class="remove-btn" (click)="removeFromWishlist(product.id)">
-              Remover
-            </button>
-            <button class="add-btn" (click)="addToCart(product.id)">
-              <p>adicionar ao <img class="cart" src="/shopping_cart.png" alt=""></p>
-            </button>
-          </div>
-      </div>
-  </div>
+            <!-- Action buttons section -->
+            <div class="buttons">
+                <!-- Remove from wishlist button -->
+                <button class="remove-btn" (click)="removeFromWishlist(product.id)">
+                    Remover    <!-- "Remove" in Portuguese -->
+                </button>
 
-  <ng-template #emptyWishlist>
-    <div class="empty-wishlist">
-      <p>Sua lista de desejos está vazia</p>
-      <button routerLink="/product" routerLinkActive="activa" class="button">Continuar Comprando</button>
+                <!-- Add to cart button with icon -->
+                <button class="add-btn" (click)="addToCart(product.id)">
+                    <p>adicionar ao <img class="cart" src="/shopping_cart.png" alt=""></p>
+                    <!-- "Add to" with cart icon -->
+                </button>
+            </div>
+        </div>
     </div>
-  </ng-template>
+
+    <!-- Template shown when wishlist is empty -->
+    <ng-template #emptyWishlist>
+        <div class="empty-wishlist">
+            <p>Sua lista de desejos está vazia</p>  <!-- "Your wishlist is empty" -->
+            <button 
+                routerLink="/product" 
+                routerLinkActive="activa" 
+                class="button">
+                Continuar Comprando    <!-- "Continue Shopping" -->
+            </button>
+        </div>
+    </ng-template>
 </div>

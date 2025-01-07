@@ -1,23 +1,45 @@
-
+<!-- Main products section container -->
 <section class="products-container">
+  <!-- Category title -->
   <h2>Homem</h2>
+
+  <!-- Display total number of products -->
   <p id="total-results">Total de resultados: {{products.length}}</p>
+
+  <!-- Grid container for product cards -->
   <div class="products-grid">
-    <div class="product-card" *ngFor="let product of products.slice(0, productsToShow)">
-      <a [routerLink]="['/productdetail', product.id]" routerLinkActive="activa">
-        <img 
-          [src]="imageId === product.id ? product.foto_secundaria : product.foto_principal" 
-          [alt]="product.nome"
-          (mouseenter)="imageId=product.id" 
-          (mouseleave)="imageId=null"
-        >
-      </a>
-      <mat-icon [ngStyle]="{'color': starredProducts.has(product.id) ? 'red' : 'inherit'}" *ngIf="currentUser$ | async" (click)="handleWishList(product.id)">stars</mat-icon>
-      <h4>{{product.nome}}</h4>
-      <p>{{product.marca}}</p>
-      <p>{{product.tipo_de_produto}}</p>
-      <h5>{{product.preco}}€</h5>
-    </div>
+      <!-- Product card - repeats for each product up to productsToShow limit -->
+      <div class="product-card" *ngFor="let product of products.slice(0, productsToShow)">
+          <!-- Product link with dynamic routing -->
+          <a [routerLink]="['/productdetail', product.id]" routerLinkActive="activa">
+              <!-- Product image with hover effect to switch between primary and secondary images -->
+              <img 
+                  [src]="imageId === product.id ? product.foto_secundaria : product.foto_principal" 
+                  [alt]="product.nome"
+                  (mouseenter)="imageId=product.id" 
+                  (mouseleave)="imageId=null"
+              >
+          </a>
+
+          <!-- Wishlist star icon - only shows for logged in users -->
+          <mat-icon 
+              [ngStyle]="{'color': starredProducts.has(product.id) ? 'red' : 'inherit'}" 
+              *ngIf="currentUser$ | async" 
+              (click)="handleWishList(product.id)"
+          >
+              stars
+          </mat-icon>
+
+          <!-- Product information -->
+          <h4>{{product.nome}}</h4>         <!-- Product name -->
+          <p>{{product.marca}}</p>          <!-- Brand name -->
+          <p>{{product.tipo_de_produto}}</p> <!-- Product type -->
+          <h5>{{product.preco}}€</h5>       <!-- Price with euro symbol -->
+      </div>
   </div>
-  <button id="see-more" *ngIf="hasProduct()" (click)="showProducts()">Ver mais</button>
+
+  <!-- "See more" button - only shows if there are more products to display -->
+  <button id="see-more" *ngIf="hasProduct()" (click)="showProducts()">
+      Ver mais  <!-- "See more" in Portuguese -->
+  </button>
 </section>

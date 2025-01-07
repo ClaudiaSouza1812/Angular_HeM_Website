@@ -1,28 +1,45 @@
+<!-- Main section container for product details -->
 <section>
+    <!-- Grid container for organizing product information -->
     <div class="grid-container">
+        <!-- Brand name display -->
         <div class="brand">
-            {{ product.marca }}
+            {{ product.marca }}  <!-- Displays product brand using interpolation -->
         </div>
+
+        <!-- Product name display -->
         <div class="name">
-            {{ product.nome }}
+            {{ product.nome }}   <!-- Displays product name using interpolation -->
         </div>
+
+        <!-- Container for product images -->
         <div class="images-container">
+            <!-- Main product image -->
             <img src="{{ product.foto_principal }}" alt="foto_principal">
+            <!-- Secondary product image -->
             <img src="{{ product.foto_secundaria }}" alt="foto_secundaria">
         </div>
+
+        <!-- Product type and color information -->
         <div class="type-collor-container">
-            {{ product.tipo_de_produto }} 
-            {{ product.cor}}
+            {{ product.tipo_de_produto }}  <!-- Displays product type -->
+            {{ product.cor}}               <!-- Displays product color -->
         </div>
+
+        <!-- Price display with euro symbol -->
         <div class="price">
-            {{ product.preco }}€
+            {{ product.preco }}€           <!-- Displays price with euro symbol -->
         </div>
+
+        <!-- Product description -->
         <div>
-            {{ product.descricao }}
+            {{ product.descricao }}        <!-- Displays product description -->
         </div>
-        <ng-container *ngIf="currentUser$">
+
+        <!-- Conditional rendering of add to cart button -->
+        <ng-container *ngIf="currentUser$">    <!-- Only shows if user is logged in -->
             <button class="cart-btn" (click)="addProductToCart()">
-                Adicionar ao Carrinho
+                Adicionar ao Carrinho          <!-- "Add to Cart" in Portuguese -->
             </button>
         </ng-container>
     </div>

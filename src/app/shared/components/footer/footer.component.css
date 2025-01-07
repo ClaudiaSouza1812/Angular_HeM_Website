@@ -1,25 +1,36 @@
+/* Angular special selector targeting the component itself */
 :host {
-    display: grid;
-    gap: 30px;
-    background-color: #e4e4e4;
-    text-align: center;
-    padding: 30px;
-    max-height: fit-content;
+    display: grid;          /* Makes container a grid layout */
+    gap: 30px;             /* Adds 30px space between grid items */
+    background-color: #e4e4e4;  /* Light gray background */
+    text-align: center;    /* Centers all text content */
+    padding: 30px;         /* Adds space around all content */
+    max-height: fit-content;  /* Adjusts height based on content */
 }
+
+/* Reset margin on paragraphs */
 p {
-    margin: 0;
+    margin: 0;            /* Removes default paragraph margins */
 }
+
+/* Container styling */
 div {
-    padding-bottom: 10px;
+    padding-bottom: 10px;  /* Adds space below div content */
 }
+
+/* Social media link spacing */
 div a {
-    margin: 0;
-    padding-right: 30px;
+    margin: 0;            /* Removes default link margins */
+    padding-right: 30px;  /* Adds space between social icons */
 }
+
+/* Social media icon styling */
 i {
-    color: black;
-    font-size: 150%;
+    color: black;         /* Sets icon color to black */
+    font-size: 150%;     /* Makes icons 50% larger than base font */
 }
+
+/* Hover effect for social media icons */
 i:hover {
-    color: blue;
+    color: blue;         /* Changes icon color to blue on hover */
 }

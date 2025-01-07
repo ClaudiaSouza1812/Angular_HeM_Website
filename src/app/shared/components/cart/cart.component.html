@@ -1,27 +1,51 @@
-<h1 class="cart-header">Carrinho</h1>
-<div class="cart-container">
-  <div class="cart-grid" *ngIf="cartProducts.length > 0; else emptyCart">
-      <p class="total-results">Total de resultados: {{cartProducts.length}}</p>
-      <div *ngFor="let product of cartProducts" class="cart-item">
-          <div class="product-image">
-          <a [routerLink]="['/productdetail', product.id]" routerLinkActive="activa"><img [src]="product.foto_principal" [alt]="product.nome"></a>
-          </div>
-          <div class="product-info">
-          <h5>{{ product.marca }}</h5>
-          <p class="product-name">{{ product.nome }}</p>
-          <p class="product-price">{{ product.preco }}€</p>
-          </div>
+<!-- Shopping Cart page header -->
+<h1 class="cart-header">Carrinho</h1>  <!-- "Cart" in Portuguese -->
 
-          <button class="remove-btn" (click)="removeFromCart(product.id)">
-          Remover
-          </button>
-      </div>
-      <p class="total">Total: {{ totalPrice | currency }}</p>
-  </div>
-  <ng-template #emptyCart>
-    <div class="empty-cart">
-      <p>Sua lista de desejos está vazia</p>
-      <button routerLink="/product" routerLinkActive="activa" class="button">Continuar Comprando</button>
+<!-- Main cart container -->
+<div class="cart-container">
+    <!-- Cart grid shows only if there are items in cart -->
+    <div class="cart-grid" *ngIf="cartProducts.length > 0; else emptyCart">
+        <!-- Display total number of items -->
+        <p class="total-results">
+            Total de resultados: {{cartProducts.length}}
+        </p>
+
+        <!-- Iterate through each cart item -->
+        <div *ngFor="let product of cartProducts" class="cart-item">
+            <!-- Product image with link to detail page -->
+            <div class="product-image">
+                <a [routerLink]="['/productdetail', product.id]" routerLinkActive="activa">
+                    <img [src]="product.foto_principal" [alt]="product.nome">
+                </a>
+            </div>
+
+            <!-- Product information section -->
+            <div class="product-info">
+                <h5>{{ product.marca }}</h5>              <!-- Brand -->
+                <p class="product-name">{{ product.nome }}</p>    <!-- Product name -->
+                <p class="product-price">{{ product.preco }}€</p> <!-- Price with euro symbol -->
+            </div>
+
+            <!-- Remove from cart button -->
+            <button class="remove-btn" (click)="removeFromCart(product.id)">
+                Remover    <!-- "Remove" in Portuguese -->
+            </button>
+        </div>
+
+        <!-- Total price display -->
+        <p class="total">Total: {{ totalPrice | currency }}</p>
     </div>
-  </ng-template>
+
+    <!-- Empty cart template -->
+    <ng-template #emptyCart>
+        <div class="empty-cart">
+            <p>Sua lista de desejos está vazia</p>  <!-- "Your wishlist is empty" -->
+            <button 
+                routerLink="/product" 
+                routerLinkActive="activa" 
+                class="button">
+                Continuar Comprando    <!-- "Continue Shopping" -->
+            </button>
+        </div>
+    </ng-template>
 </div>

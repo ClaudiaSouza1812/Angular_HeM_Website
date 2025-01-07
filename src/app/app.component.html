@@ -1,11 +1,14 @@
 <header>
+  <!-- place these components across all pages -->
   <app-topmenu></app-topmenu>
   <app-loginmodal></app-loginmodal>
   <app-logoutmodal></app-logoutmodal>
 </header>
 <main>
+  <!--  use the router-outlet to place the components based on the current route -->
   <router-outlet></router-outlet>
 </main>
 <footer>
+  <!-- place the Footer across all pages -->
   <app-footer></app-footer>
 </footer>

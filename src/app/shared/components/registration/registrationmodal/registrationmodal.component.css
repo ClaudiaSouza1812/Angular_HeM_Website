@@ -1,51 +1,58 @@
+/* Modal overlay/backdrop */
 .modal {
-    position: fixed;
+    position: fixed;                /* Fixed position relative to viewport */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    width: 100%;                   /* Full viewport width */
+    height: 100%;                  /* Full viewport height */
+    background-color: rgba(0,0,0,0.5); /* Semi-transparent black background */
+    display: flex;                 /* Uses flexbox for centering */
+    justify-content: center;       /* Centers horizontally */
+    align-items: center;           /* Centers vertically */
+    z-index: 1000;                /* Ensures modal appears above other content */
 }
 
+/* Modal box styling */
 .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    width: 500px;
-    max-width: 90%;
-    position: relative;
+    background-color: white;       /* White background for modal box */
+    padding: 20px;                /* Space inside modal */
+    border-radius: 5px;           /* Rounded corners */
+    width: 500px;                 /* Fixed width */
+    max-width: 90%;              /* Responsive width for smaller screens */
+    position: relative;           /* For positioning child elements */
 }
 
+/* Header section styling */
 #header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+    display: flex;                /* Uses flexbox */
+    justify-content: space-between; /* Spaces items apart */
+    align-items: center;          /* Centers items vertically */
+    margin-bottom: 15px;          /* Space below header */
 }
 
+/* Message text styling */
 #message {
-    margin: 15px 0;
+    margin: 15px 0;               /* Vertical spacing around message */
 }
 
+/* Validation/button section styling */
 #validation {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 15px;
+    display: flex;                /* Uses flexbox */
+    justify-content: flex-end;    /* Aligns button to right */
+    margin-top: 15px;             /* Space above button section */
 }
 
+/* Button styling */
 #validationButton {
-    padding: 8px 16px;
-    background-color: #0d6efd;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    padding: 8px 16px;            /* Internal button spacing */
+    background-color: #0d6efd;    /* Bootstrap primary blue */
+    color: white;                 /* White text */
+    border: none;                 /* Removes border */
+    border-radius: 4px;           /* Rounded corners */
+    cursor: pointer;              /* Hand cursor on hover */
 }
 
+/* Button hover effect */
 #validationButton:hover {
-    background-color: #0b5ed7;
+    background-color: #0b5ed7;    /* Darker blue on hover */
 }

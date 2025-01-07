@@ -1,16 +1,25 @@
+<!-- Modal container that only shows when isVisible$ Observable is true -->
 <div *ngIf="isVisible$ | async">
+  <!-- Main modal backdrop -->
   <div class="modal">
+    <!-- Modal content container -->
     <div class="modal-content">
+      <!-- Header section -->
       <div id="header">
-        <h4>Registo de utilizador</h4>
+        <h4>Registo de utilizador</h4>    <!-- "User Registration" in Portuguese -->
       </div>
+
+      <!-- Message section -->
       <div>
         <p id="message">
-          Utilizador registado com sucesso.
+          Utilizador registado com sucesso.    <!-- "User successfully registered" in Portuguese -->
         </p>
       </div>
+
+      <!-- Button section -->
       <div id="validation">
         <p>
+          <!-- OK button with routing and click handling -->
           <input 
             routerLink="/home" 
             routerLinkActive="activa" 
@@ -24,3 +33,12 @@
     </div>
   </div>
 </div>
+<!-- 
+  routerLink="/home"                 Routes to home page when clicked
+  routerLinkActive="activa"          Adds 'activa' class when route is active 
+  type="button" 
+  id="validationButton" 
+  value="OK"                         Button text 
+  (click)="closeModal()"             Closes modal when clicked 
+
+-->

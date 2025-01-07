@@ -1,43 +1,53 @@
 
+/* Style for the section heading */
 .highlights-container h3 {
-    text-transform: uppercase;
-    text-align: center;
-    padding-top: 2rem;
-    font-weight: bold;
+    text-transform: uppercase;    /* Converts text to uppercase */
+    text-align: center;          /* Centers the text */
+    padding-top: 2rem;           /* Adds space above the heading */
+    font-weight: bold;           /* Makes text bold */
 }
+
+/* Grid layout for product cards */
 .products-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: 1.5rem;
+    display: grid;               /* Uses CSS Grid layout */
+    grid-template-columns: repeat(4, 1fr);  /* Creates 4 equal columns */
+    grid-template-rows: repeat(2, auto);    /* Creates 2 rows that adjust to content */
+    gap: 1.5rem;                /* Space between grid items */
 
+    /* Responsive layout for tablets */
     @media (max-width: 1024px) {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);  /* Changes to 2 columns */
     }
 
+    /* Responsive layout for mobile */
     @media (max-width: 480px) {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr;  /* Changes to single column */
     }
 }
 
+/* Individual product card styling */
 .product-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    
+    display: flex;              /* Uses flexbox for card layout */
+    flex-direction: column;     /* Stacks content vertically */
+    align-items: center;        /* Centers content horizontally */
+    padding: 1rem;             /* Adds space inside cards */
 
+    /* Product image styling */
     img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        border-radius: 4px;
+        width: 100%;           /* Makes image fill card width */
+        height: auto;          /* Maintains image aspect ratio */
+        object-fit: cover;     /* Ensures image covers area without distortion */
+        border-radius: 4px;    /* Rounds image corners */
     }
 }
+
+/* Hover effect for product cards */
 .product-card:hover {
-    border-radius: 2px;
-    box-shadow: 0px 0px 2px 2px rgb(243, 3, 3);
+    border-radius: 2px;        /* Slightly rounds corners on hover */
+    box-shadow: 0px 0px 2px 2px rgb(243, 3, 3);  /* Adds red shadow on hover */
 }
+
+/* Hover effect for links */
 a:hover {
-    cursor: pointer;
+    cursor: pointer;           /* Changes cursor to pointer on hover */
 }

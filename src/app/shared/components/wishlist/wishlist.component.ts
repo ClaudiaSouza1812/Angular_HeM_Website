@@ -1,3 +1,4 @@
+// Import required Angular and custom modules/services
 import { Component, Input, OnInit } from '@angular/core';
 import { WishlistService } from '../../../core/services/wishlist.service';
 import { Observable, take } from 'rxjs';
@@ -10,107 +11,122 @@ import { CartService } from '../../../core/services/cart.service';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-wishlist',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './wishlist.component.html',
-  styleUrls: ['./wishlist.component.scss']
+ selector: 'app-wishlist',
+ standalone: true,
+ imports: [CommonModule, RouterModule],
+ templateUrl: './wishlist.component.html',
+ styleUrls: ['./wishlist.component.scss']
 })
 export class WishlistComponent implements OnInit {
-  wishlistProducts: IProduct[] = [];
-  currentUser$: Observable<IUser | null>;
-  currentUserId?: number;
+ // Component properties
+ wishlistProducts: IProduct[] = [];            // Stores wishlist products
+ currentUser$: Observable<IUser | null>;       // Current user observable
+ currentUserId?: number;                       // Stores current user ID
 
-  constructor(private productService: ProductService, private wishlistService: WishlistService, private autenticationService: AutenticationService, private cartService: CartService
-  ) {
-    this.currentUser$ = this.autenticationService.currentUser$;
-  }
+ // Inject required services
+ constructor(
+   private productService: ProductService,
+   private wishlistService: WishlistService,
+   private autenticationService: AutenticationService,
+   private cartService: CartService
+ ) {
+   this.currentUser$ = this.autenticationService.currentUser$;
+ }
 
-  ngOnInit() {
-    this.loadWishlistProducts();
-    this.currentUser$.subscribe(user => {
-      this.currentUserId = user?.id;
-    });
-  }
+ // Initialize component
+ ngOnInit() {
+   this.loadWishlistProducts();  // Load initial wishlist
+   // Store current user ID
+   this.currentUser$.subscribe(user => {
+     this.currentUserId = user?.id;
+   });
+ }
 
-  loadWishlistProducts() {
-    this.currentUser$.pipe(
-      take(1)
-    ).subscribe(user => {
-      if (user) {
-        this.wishlistService.getAllWishLists().subscribe({
-          next: (wishlist) => {
-            const userWishlist = wishlist.filter(item => item.user_id === user.id);
-            this.productService.getAllProducts().subscribe({
-              next: (products) => {
-                this.wishlistProducts = products.filter(product => 
-                  userWishlist.some(wish => wish.product_id === product.id)
-                );
-              },
-              error: (error) => console.error('Error loading products:', error)
-            });
-          },
-          error: (error) => console.error('Error loading wishlist:', error)
-        });
-      }
-    });
-  }
+ // Load products in user's wishlist
+ loadWishlistProducts() {
+   this.currentUser$.pipe(
+     take(1)
+   ).subscribe(user => {
+     if (user) {
+       // Get all wishlists and filter for current user
+       this.wishlistService.getAllWishLists().subscribe({
+         next: (wishlist) => {
+           const userWishlist = wishlist.filter(item => item.user_id === user.id);
+           // Get all products and filter for wishlist items
+           this.productService.getAllProducts().subscribe({
+             next: (products) => {
+               this.wishlistProducts = products.filter(product => 
+                 userWishlist.some(wish => wish.product_id === product.id)
+               );
+             },
+             error: (error) => console.error('Error loading products:', error)
+           });
+         },
+         error: (error) => console.error('Error loading wishlist:', error)
+       });
+     }
+   });
+ }
 
-  removeFromWishlist(productId: number) {
-    this.currentUser$.pipe(
-      take(1)
-    ).subscribe(user => {
-      if (user) {
-        this.wishlistService.getAllWishLists().subscribe({
-          next: (wishlist) => {
-            const wishlistItem = wishlist.find(
-              item => item.user_id === user.id && item.product_id === productId
-            );
-            
-            if (wishlistItem && wishlistItem.id) {
-              this.wishlistService.removeFromWishList(wishlistItem.id).subscribe({
-                next: () => {
-                  this.wishlistProducts = this.wishlistProducts.filter(
-                    product => product.id !== productId
-                  );
-                  alert('Produto removido com sucesso da Lista de Desejos!');
-                },
-                error: (error) => console.error('Error removing from wishlist:', error)
-              });
-            }
-          },
-          error: (error) => console.error('Error getting wishlist:', error)
-        });
-      }
-    });
-  }
+ // Remove item from wishlist
+ removeFromWishlist(productId: number) {
+   this.currentUser$.pipe(
+     take(1)
+   ).subscribe(user => {
+     if (user) {
+       // Find wishlist item to remove
+       this.wishlistService.getAllWishLists().subscribe({
+         next: (wishlist) => {
+           const wishlistItem = wishlist.find(
+             item => item.user_id === user.id && item.product_id === productId
+           );
+           
+           if (wishlistItem && wishlistItem.id) {
+             // Remove item and update local state
+             this.wishlistService.removeFromWishList(wishlistItem.id).subscribe({
+               next: () => {
+                 this.wishlistProducts = this.wishlistProducts.filter(
+                   product => product.id !== productId
+                 );
+                 alert('Produto removido com sucesso da Lista de Desejos!');
+               },
+               error: (error) => console.error('Error removing from wishlist:', error)
+             });
+           }
+         },
+         error: (error) => console.error('Error getting wishlist:', error)
+       });
+     }
+   });
+ }
 
-  addToCart(productId: number) {
-    if (!this.currentUserId) {
-      alert('Please log in to add items to cart');
-      return;
-    }
-  
-    const userId = this.currentUserId;
+ // Add wishlist item to cart
+ addToCart(productId: number) {
+   // Check if user is logged in
+   if (!this.currentUserId) {
+     alert('Please log in to add items to cart');
+     return;
+   }
+ 
+   const userId = this.currentUserId;
 
-    this.cartService.checkProductInCart(this.currentUserId, productId).subscribe(isInCart => {
-      if (!isInCart) {
-        this.cartService.addToCart(userId, productId).subscribe({
-          next: () => {
-            alert('Produto adicionado ao carrinho de compras!');
-            this.removeFromWishlist(productId);
-          },
-          error: (error) => {
-            console.error('Error adding to cart:', error);
-            alert('Falha ao adicionar ao carrinho de compras!');
-          }
-        });
-      } else {
-        alert('Produto já existe no carrinho!');
-      }
-    });
-  }
-
-
-
+   // Check if product already in cart
+   this.cartService.checkProductInCart(this.currentUserId, productId).subscribe(isInCart => {
+     if (!isInCart) {
+       // Add to cart and remove from wishlist
+       this.cartService.addToCart(userId, productId).subscribe({
+         next: () => {
+           alert('Produto adicionado ao carrinho de compras!');
+           this.removeFromWishlist(productId);
+         },
+         error: (error) => {
+           console.error('Error adding to cart:', error);
+           alert('Falha ao adicionar ao carrinho de compras!');
+         }
+       });
+     } else {
+       alert('Produto já existe no carrinho!');
+     }
+   });
+ }
 }

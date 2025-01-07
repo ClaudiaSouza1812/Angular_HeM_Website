@@ -1,54 +1,72 @@
+/* Main container layout */
 .products-container {
-    display: grid;
-    grid-template-rows: 1fr;
-    justify-items: center;
-    align-items: center;
-    text-align: center;
-    padding: 0px;
-    margin: 0px;
-}
-#total-results {
-    justify-self: left;
-}
-h2, h4 {
-    font-weight: bold;
-}
-p {
-    margin: 0px;
-}
-#price {
-    font-weight: 3em;
-}
-#see-more {
-    background-color: black;
-    color: white;
-    border: none;
-    padding: 10px;
-    width: 100%;
-    margin-top: 50px;
-}
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    row-gap: 25px;
-
+    display: grid;                /* Sets up grid layout */
+    grid-template-rows: 1fr;      /* Single row taking full height */
+    justify-items: center;        /* Centers items horizontally */
+    align-items: center;          /* Centers items vertically */
+    text-align: center;          /* Centers text content */
+    padding: 0px;                /* Removes padding */
+    margin: 0px;                 /* Removes margin */
+ }
+ 
+ /* Results count positioning */
+ #total-results {
+    justify-self: left;          /* Aligns results count to left */
+ }
+ 
+ /* Heading styles */
+ h2, h4 {
+    font-weight: bold;           /* Makes headings bold */
+ }
+ 
+ /* Paragraph spacing */
+ p {
+    margin: 0px;                /* Removes paragraph margins */
+ }
+ 
+ /* Price text styling */
+ #price {
+    font-weight: 3em;           /* Makes price text bolder */
+ }
+ 
+ /* "See more" button styling */
+ #see-more {
+    background-color: black;     /* Black background */
+    color: white;               /* White text */
+    border: none;               /* Removes border */
+    padding: 10px;              /* Adds internal spacing */
+    width: 100%;               /* Full width button */
+    margin-top: 50px;          /* Space above button */
+ }
+ 
+ /* Product grid layout */
+ .products-grid {
+    display: grid;              /* Sets up grid for products */
+    grid-template-columns: repeat(3, 1fr);  /* Three equal columns */
+    row-gap: 25px;             /* Space between rows */
+ 
+    /* Responsive breakpoints */
     @media (max-width: 1024px) {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);  /* Two columns on tablets */
     }
     @media (max-width: 480px) {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr;  /* Single column on mobile */
     }
-}
-
-.product-card img {
-    width: 80%;
-    padding-bottom: 15px;
-}
-mat-icon {
-    position:absolute;
-    cursor: pointer;
-}
-mat-icon.starClicked {
-    color: red;
-}
-
+ }
+ 
+ /* Product image sizing */
+ .product-card img {
+    width: 80%;                /* Image takes 80% of card width */
+    padding-bottom: 15px;      /* Space below image */
+ }
+ 
+ /* Wishlist icon styling */
+ mat-icon {
+    position: absolute;        /* Positions icon absolutely */
+    cursor: pointer;          /* Shows pointer cursor on hover */
+ }
+ 
+ /* Clicked wishlist icon state */
+ mat-icon.starClicked {
+    color: red;               /* Red color for active wishlist items */
+ }

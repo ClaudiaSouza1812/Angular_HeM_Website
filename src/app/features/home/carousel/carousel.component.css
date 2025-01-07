@@ -1,40 +1,45 @@
+/* Main container that creates the viewport window */
 .carousel-container {
-    width: 100%;
-    max-width: 1400px;
-    height: 800px;
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
+    width: 100%;                /* Takes full width of parent */
+    max-width: 1400px;         /* Limits maximum size for large screens */
+    height: 800px;             /* Fixed height for consistent sizing */
+    position: relative;        /* Creates positioning context for absolute elements */
+    overflow: hidden;          /* Hides slides that extend beyond the viewport */
+    margin: 0 auto;           /* Centers the carousel horizontally */
 }
 
+/* Container that holds and moves all slides */
 .carousel-content {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    height: 100%;
+    display: flex;            /* Arranges slides horizontally in a row */
+    transition: transform 0.5s ease-in-out;  /* Smooth animation when sliding */
+    height: 100%;            /* Takes full height of container */
 }
 
+/* Individual slide wrapper */
 .carousel-slide {
-    min-width: 100%;
-    position: relative;
+    min-width: 100%;         /* Each slide takes full width of viewport */
+    position: relative;      /* Creates positioning context for slide content */
 }
 
+/* Image styling within each slide */
 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%;            /* Image takes full width of slide */
+    height: 100%;           /* Image takes full height of slide */
+    object-fit: cover;      /* Maintains aspect ratio while filling space */
 }
 
+/* Overlay text that appears centered on all slides */
 .fixed-carousel-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: bold;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    z-index: 2;
-    pointer-events: none;
+    position: absolute;      /* Positions text independent of slide flow */
+    top: 50%;               /* Places text vertically centered */
+    left: 50%;              /* Places text horizontally centered */
+    transform: translate(-50%, -50%);  /* Adjusts text to be truly centered */
+    color: white;           /* Makes text white for visibility */
+    text-transform: uppercase;  /* Converts text to uppercase */
+    font-size: 4em;         /* Large text size */
+    font-weight: bold;      /* Makes text bold */
+    text-align: center;     /* Centers text content */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Adds shadow for readability */
+    z-index: 2;             /* Ensures text appears above slides */
+    pointer-events: none;   /* Prevents text from interfering with click events */
 }

@@ -1,76 +1,93 @@
+/* Center align cart header */
 .cart-header {
-    text-align: center;
-  }
-  .cart-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: 'a b c';
-  }
-  
-  .total-results {
-    text-align: left;
-    margin: 0;
-  }
-  .total {
-    text-align: left;
-    margin: 0;
-    font-size: 2rem;
-  }
-  .cart-grid {
-    grid-area: b;
-    display: grid;
-    gap: 15px;
-    width: 650px;
-    text-align: center; 
-  
-    .cart-item {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-areas: 'a b c';
-      align-items: center;
-      gap: 20px;
-  
+  text-align: center;
+}
+
+/* Main container layout using grid */
+.cart-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* Three equal columns */
+  grid-template-areas: 'a b c';            /* Define grid areas */
+}
+
+/* Results count styling */
+.total-results {
+  text-align: left;                        /* Left align count */
+  margin: 0;                               /* Remove margins */
+}
+
+/* Total price styling */
+.total {
+  text-align: left;                        /* Left align total */
+  margin: 0;
+  font-size: 2rem;                         /* Large font for total price */
+}
+
+/* Cart grid layout */
+.cart-grid {
+  grid-area: b;                            /* Place in center column */
+  display: grid;                           /* Grid layout for items */
+  gap: 15px;                              /* Space between items */
+  width: 650px;                           /* Fixed width */
+  text-align: center;                     /* Center align content */
+
+  /* Individual cart item styling */
+  .cart-item {
+      display: grid;                       /* Grid layout for item */
+      grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+      grid-template-areas: 'a b c';        /* Define item layout */
+      align-items: center;                 /* Center items vertically */
+      gap: 20px;                          /* Space between sections */
+
+      /* Product image sizing */
       img {
-        max-width: 50%;
+          max-width: 50%;                  /* Limit image width */
       }
+
+      /* Price text styling */
       .product-price {
-        font-size: 1.5rem;
+          font-size: 1.5rem;               /* Large font for price */
       }
+
+      /* Remove button styling */
       .remove-btn {
-        background-color: red;
-        color: white;
-        border: none;
+          background-color: red;           /* Red background */
+          color: white;                    /* White text */
+          border: none;                    /* No border */
       }
-    }
   }
-  
+}
+
+/* Empty cart message styling */
 .empty-cart {
-  grid-area: b;
-  justify-self: center;
-  display: flex;
-  flex-direction: column;
+  grid-area: b;                           /* Place in center column */
+  justify-self: center;                   /* Center horizontally */
+  display: flex;                          /* Use flexbox */
+  flex-direction: column;                 /* Stack items vertically */
 }
+
+/* Continue shopping button styling */
 .button {
-  
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px;
-  
+  background-color: black;                /* Black background */
+  color: white;                           /* White text */
+  border: none;                           /* No border */
+  padding: 10px;                          /* Internal spacing */
 }
-  @media (max-width: 480px) {
-    .cart-grid {
-      width: 100%; 
-      justify-self: center;              
-      
+
+/* Mobile responsive styles */
+@media (max-width: 480px) {
+  .cart-grid {
+      width: 100%;                        /* Full width on mobile */
+      justify-self: center;               /* Center grid */
+
+      /* Stack cart items vertically on mobile */
       .cart-item {
-        grid-template-columns: 1fr;  
-        grid-template-areas: 
-          'a'
-          'b'
-          'c';
-        gap: 0px;  
+          grid-template-columns: 1fr;     /* Single column */
+          grid-template-areas:            /* Stack elements */
+              'a'
+              'b'
+              'c';
+          gap: 0px;                       /* Remove gap */
       }
-    }
   }
-  
+}
