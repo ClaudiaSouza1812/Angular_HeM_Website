@@ -1,27 +1,44 @@
-# CARS11P05AngularClaudiaSouza
+Project Summary: H&M Corporate Website Clone
+A feature-rich e-commerce platform built with Angular 17, implementing modern web development practices and comprehensive shopping functionalities.
+Key Technical Highlights:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
+- Angular Framework Features:
 
-## Development server
+Standalone Components
+Dependency Injection
+Two-way Data Binding
+Component Lifecycle Hooks
+Services and Observables
+Reactive Forms
+Custom Directives
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- State Management:
 
-## Code scaffolding
+RxJS BehaviorSubjects
+Observable Streams
+Service-based State
+Session Management
+Local Storage Integration
+Data Persistence
+Event Broadcasting
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Security Implementation:
 
-## Build
+User Authentication Flow
+Route Guards
+Form Validation
+Session Handling
+Error Management
+Data Encryption
+Secure API Calls
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- UI/UX Features:
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Angular Material Components
+Responsive Design
+Dynamic Modal System
+Shopping Cart Integration
+Wishlist Management
+Product Filtering
+Interactive Navigation
+Form Validation
