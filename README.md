@@ -6,31 +6,6 @@ A feature-rich e-commerce platform built with Angular 17, implementing modern we
 
 This project is a sophisticated clone of the H&M corporate website, built using Angular 17 and incorporating advanced features for a complete e-commerce experience. The application demonstrates best practices in modern web development, robust state management, and secure user authentication.
 
-## Prerequisites
-
-- Node.js (latest LTS version)
-- Angular CLI (`npm install -g @angular/cli`)
-- Package manager (npm or yarn)
-
-## Installation
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm start
-```
-
-The application will be available at `http://localhost:4200`.
-
 ## Features
 
 ### Core Functionality
@@ -234,38 +209,6 @@ The application implements a comprehensive routing system:
 - `npm run watch` - Builds in watch mode
 - `npm test` - Runs unit tests
 - `npm run serve:ssr` - Serves server-side rendered application
-
-## Building for Production
-
-To build the application for production:
-
-```bash
-npm run build -- --configuration production
-```
-
-The built files will be located in the `dist/` directory.
-
-## Development Guidelines
-
-### Code Style
-- Follow Angular style guide
-- Use standalone components
-- Implement lazy loading where possible
-- Maintain proper component segregation
-- Follow reactive programming patterns
-
-### Testing
-- Write unit tests for components and services
-- Use Jasmine and Karma for testing
-- Maintain good test coverage
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
 
 ## License
 
