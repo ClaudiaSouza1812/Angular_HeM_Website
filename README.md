@@ -6,6 +6,12 @@ A feature-rich e-commerce platform built with Angular 17, implementing modern we
 
 This project is a sophisticated clone of the H&M corporate website, built using Angular 17 and incorporating advanced features for a complete e-commerce experience. The application demonstrates best practices in modern web development, robust state management, and secure user authentication.
 
+## Getting Started
+1. Clone the repository
+2. Run `npm install`
+3. Run `npm start`
+4. Open browser at `http://localhost:4200`
+
 ## Features
 
 ### Core Functionality
@@ -213,3 +219,4 @@ The application implements a comprehensive routing system:
 ## License
 
 Copyright (c) 2024 Claudia Souza
+All rights reserved.
